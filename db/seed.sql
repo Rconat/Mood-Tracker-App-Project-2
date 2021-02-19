@@ -37,10 +37,11 @@ create view vw_user_mood
         date_format(date_created, "%p") as day_am_pm
 	from mood m inner join user u on u.id = m.user_id;
     
-    select * from user;
+# example queries    
+select * from user;
     
-    select * from vw_user_mood;
+select * from vw_user_mood;
     
-    select * from vw_user_mood where user_name='ryan';
+select * from vw_user_mood where user_name='ryan';
 
 

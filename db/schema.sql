@@ -28,27 +28,5 @@ CREATE TABLE mood
 	PRIMARY KEY (id)
 );
 
-use moods;
-
-insert into user (user_name, user_zip_code) values ("kheuer", 60004);
-insert into user (user_name, user_zip_code) values ("ryan", 48007);
-insert into user (user_name, user_zip_code) values ("kristina", 60007);
-insert into user (user_name, user_zip_code) values ("zac", 53007);
-
-select * from user;
-
-insert into mood(user_id,zip,weather_abbrev, user_diary, mood_rating)
-values(1, 60004, "sun","testing", 5);
-
-insert into mood(user_id,zip,weather_abbrev, user_diary, mood_rating)
-values(2, 48007, "cloudy","testing", 5);
-
-insert into mood(user_id,zip,weather_abbrev, user_diary, mood_rating)
-values(3, 53007, "windy","testing", 5);
-
-insert into mood(user_id,zip,weather_abbrev, user_diary, mood_rating)
-values(4, 60007, "snow","testing", 5);
-
-select * from mood;
 
 
