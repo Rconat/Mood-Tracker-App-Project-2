@@ -76,7 +76,7 @@ module.exports = function(app) {
           data.forEach(element => {
             console.log("create on: ",element.createdAt)
             console.log("create on: ", element.createdAt.toLocaleString("default", { weekday: "long" }))
-            //console.log("am or pm: ",element.createdAt.getHours() > ?  )
+            console.log("am or pm: ",element.createdAt.getHours()  )
             console.log("zip: ",element.zip)
             console.log("weather: ",element.weather_abbrev)
             console.log("with others: ",element.with_others)
