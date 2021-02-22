@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 const star = $("i")
-
+const submit = $("#submit")
 
 star.hover(function() {
     var targetStar = (parseInt($(this).data("id")))
@@ -53,6 +53,11 @@ star.click(function() {
             $("i[data-id=" + i + "]").removeClass("fas").addClass("far")  
         }
     }
+})
+
+submit.click(function() {
+    
+    console.log("submit")
 })
 
 
