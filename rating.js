@@ -55,11 +55,18 @@ star.click(function() {
     }
 })
 
-submit.click(function() {
-    
-    console.log("submit")
-})
+var entryRating
 
+submit.click(function() {
+    var ratingArray = []
+    for (let i=0; i <= star.length; i++) {
+        if ($("i[data-id=" + (i+1) + "]").hasClass("ratingLocked")) {
+            ratingArray.push(star[i])
+        }
+    }
+    entryRating = ratingArray[ratingArray.length-1].getAttribute('data-id')
+    console.log(entryRating + " will be saved as the diary entry rating")
+})
 
 
 
