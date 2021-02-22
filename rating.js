@@ -70,6 +70,7 @@ submit.click(function() {
 
 
 
+
 // Josh's working code
 
 // const stars = $('i')
