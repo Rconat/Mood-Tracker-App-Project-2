@@ -87,6 +87,9 @@ module.exports = function(app) {
           });
 
           res.json(data);
+        })
+        .catch(err => {
+          res.status(401).json(err);
         });
     }    
   });
@@ -123,7 +126,7 @@ module.exports = function(app) {
       eaten_today: req.eaten_today,
       medications_today: req.body.medications_today,
       user_diary: req.body.user_diary,
-      mood_rating: req.body.  mood_rating
+      mood_rating: req.body.mood_rating
     })
       .then((data) => {
         res.json(data);
