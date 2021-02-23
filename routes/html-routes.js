@@ -28,4 +28,19 @@ module.exports = function(app) {
       user: req.user
     })
   });
+
+  //route for the diary page
+  app.get("/diary", isAuthenticated, (req,res) => {
+    res.render('diary', {
+      user: req.user
+    })
+  })
+
+  //route for the graphs page
+  app.get("/graphs", isAuthenticated, (req,res) => {
+    res.render('graphs', {
+      user: req.user
+    })
+  })
+
 };
