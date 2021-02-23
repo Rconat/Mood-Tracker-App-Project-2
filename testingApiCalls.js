@@ -5,17 +5,13 @@ var currentCity = 'Chicago'
 var apiKey = 'c9ef626d3d26fe5016c7a097d15877da'
 
 // rating npm
-var Rating = require('rating');
+
  
 var container = document.querySelector('.rating');
 var star = document.querySelector('.star');
 star.parentNode.removeChild(star);
  
-var rating = new Rating([1, 2, 3, 4, 5], {
-  container: container,
-  star: star
-});
- 
+
 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} - current weather
 var currentWeatherCall = 'https://api.openweathermap.org/data/2.5/weather?q=' + currentCity + '&appid=' + apiKey
