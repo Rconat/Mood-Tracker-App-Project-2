@@ -28,4 +28,10 @@ module.exports = function(app) {
       user: req.user
     })
   });
+
+  app.get("/diary", isAuthenticated, (req, res) => {
+    res.render('diary', {
+      user: req.user
+    })
+  });
 };
