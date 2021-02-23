@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const { reporters } = require("mocha");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -36,7 +37,7 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // Route for getting some data about our user to be used client side
+
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -44,10 +45,82 @@ module.exports = function(app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
+      // res.json({
+      //   email: req.user.email,
+      //   id: req.user.id
+      // });
+
+      console.log("req.user = ", req.user);
+      db.Mood.findAll({
+        where: {
+          UserId: req.user.id
+        }
+      })
+        .then(function(data) {
+          console.log("Mood data: ",data);
+
+          data.forEach(element => {
+            console.log("create on: ",element.createdAt)
+            console.log("create on: ", element.createdAt.toLocaleString("default", { weekday: "long" }))
+            console.log("am or pm: ",element.createdAt.getHours()  )
+            console.log("zip: ",element.zip)
+            console.log("weather: ",element.weather_abbrev)
+            console.log("with others: ",element.with_others)
+            console.log("eaten today: ",element.eaten_today)
+            console.log("diary: ",element.user_diary)
+            console.log("mood stars: ",element.mood_rating)
+            
+          });
+
+          res.json(data);
+        })
+        .catch(err => {
+          res.status(401).json(err);
+        });
+    }    
   });
+
+  // 
+  // get all moods for this user.  
+  // return results to our 
+
+  app.get("/api/user_moods/:id", (req, res) => {
+   
+     db.Mood.findAll({
+       where: {
+         UserId: req.params.id
+       }
+     })
+     .then(() => {
+      res.redirect(307, "/api/members");
+     })
+     .catch(err => {
+      res.status(401).json(err);
+    });
+  });
+
+  // 
+  // add a new mood for this user.  
+  // UserId is the Mood foreign key between tables, Userss and Mood
+
+  app.post("/api/mood", (req, res) => {
+    db.User.create({
+      UserId: req.body.UserId,
+      zip: req.body.zip,
+      weather_abbrev: req.body.weather_abbrev,
+      with_others: req.body.with_others,
+      eaten_today: req.eaten_today,
+      medications_today: req.body.medications_today,
+      user_diary: req.body.user_diary,
+      mood_rating: req.body.mood_rating
+    })
+      .then((data) => {
+        res.json(data);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+
 };
