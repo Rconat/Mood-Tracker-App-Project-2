@@ -36,6 +36,7 @@ module.exports = function(app) {
     res.render('diary', {
       user: req.user
     })
+    console.log(req.user.id)
   })
 
   //route for the graphs page

@@ -129,6 +129,7 @@ module.exports = function(app) {
       console.log("no user defined");
       res.json({});
     } else {
+      console.log(req.user.id);
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
