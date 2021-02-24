@@ -6,7 +6,7 @@
             <div class="col-md-8">
 
 
-    <div class="flexcon"><h4>Have you eaten today?</h4>
+    <div class="flexconDiary"><h4>Have you eaten today?</h4>
         <div class="formCheckContainer">
       
             <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
@@ -19,7 +19,7 @@
    
         </div><!--end cxbox one-->
 
-        <div class="flexcon">
+        <div class="flexconDiary">
             <h4>Are you with people?</h4>
             <div class="formCheckContainer">
           
@@ -32,7 +32,7 @@
        
             </div><!--end cxbox two-->
 
-    <div class="flexcon"><h4>Have you taken any medication?</h4>
+    <div class="flexconDiary"><h4>Have you taken any medication?</h4>
         <div class="formCheckContainer">
       
             <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
@@ -65,11 +65,25 @@
     <h5>Rate your mood for today</h5>
 
 
-    <div class="ratingDiv"></div><!--end ratying div-->
+    <div class="ratingDiv">
+        <i class="far fa-star" data-id="1"> </i>
+        <i class="far fa-star" data-id="2"></i>
+        <i class="far fa-star" data-id="3"></i>
+        <i class="far fa-star" data-id="4"></i>
+        <i class="far fa-star" data-id="5"></i>
+        <i class="far fa-star" data-id="6"></i>
+        <i class="far fa-star" data-id="7"></i>
+        <i class="far fa-star" data-id="8"></i>
+        <i class="far fa-star" data-id="9"></i>
+        <i class="far fa-star" data-id="10"></i>
+    <br>
+    
+    
+    </div><!--end ratying div-->
 
     <div align = "right" class="subBtn">
 
-    <button type="button" class="btn btn-primary submitButton"> Submit </button><!--end submitbutton-->
+    <button type="button" id= "submit" class="btn btn-primary submitButton"disabled> Submit </button><!--end submitbutton-->
     </div>
 
 
@@ -78,7 +92,6 @@
 </div><!--end Container-->
 
 
-        <div class="lougOut" style="text-align: center;"> <a href="#">Logout</a></div><!---->
 
 
 <!--body for handlbars-->

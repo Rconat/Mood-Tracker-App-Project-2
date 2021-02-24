@@ -1,6 +1,23 @@
 <div class="finalPageGraph">
         <div class="finalGraphBody">
-          This is some text within a card body.
+          <canvas id="myChart" width="200" height="200"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Red'],
+                datasets: [{
+                    label: 'Past Week Moods',
+                    data: [5, 8, 2, 7, 6, 8, 10],
+                }]
+            },
+            options: {
+              responsive: false
+                
+            }
+        });
+    </script>
         </div>
       </div><!-- ens div for graph-->
 
@@ -13,7 +30,7 @@
       </div><!-- end modeldiv-->
 
 
-      <div  class="flexcon">
+      <div  class="flexconGraph">
       
       <button type="button" class="btn btn-light">Weather</button>
       <button type="button" class="btn btn-light">With People</button>
