@@ -142,3 +142,4 @@ submit.click(function() {
     entryRating = ratingArray[ratingArray.length-1].getAttribute('data-id')
     console.log(entryRating + " will be saved as the diary entry rating")
 })
+})
