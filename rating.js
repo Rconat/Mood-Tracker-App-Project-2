@@ -42,6 +42,7 @@ star.hover(function() {
 })
 
 star.click(function() {
+    submit.prop("disabled", false)
     var targetStar = (parseInt($(this).data("id")))
     for (let i=0; i <= targetStar; i++) {
         $("i[data-id=" + i + "]").addClass("ratingLocked")
@@ -55,7 +56,7 @@ star.click(function() {
     }
 })
 
-var entryRating
+var entryRating = 0
 
 submit.click(function() {
     var ratingArray = []
