@@ -105,12 +105,13 @@ module.exports = function(app) {
   // UserId is the Mood foreign key between tables, Userss and Mood
 
   app.post("/api/mood", (req, res) => {
-    db.User.create({
+    console.log(req.body);
+    db.Mood.create({
       UserId: req.body.UserId,
       zip: req.body.zip,
       weather_abbrev: req.body.weather_abbrev,
       with_others: req.body.with_others,
-      eaten_today: req.eaten_today,
+      eaten_today: req.body.eaten_today,
       medications_today: req.body.medications_today,
       user_diary: req.body.user_diary,
       mood_rating: req.body.mood_rating
@@ -119,6 +120,7 @@ module.exports = function(app) {
         res.json(data);
       })
       .catch(err => {
+        console.log("in posting new mood")
         res.status(401).json(err);
       });
   });

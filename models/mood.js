@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
     const Mood = sequelize.define("Mood", {
         // The email cannot be null, and must be a proper email before creation
         zip: {
-          type: DataTypes.INTEGER
+          type: DataTypes.INTEGER,
+          allowNull: true
         },
         weather_abbrev: {
           type: DataTypes.STRING,

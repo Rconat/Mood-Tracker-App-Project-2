@@ -33,10 +33,11 @@ module.exports = function(app) {
 
   //route for the diary page
   app.get("/diary", isAuthenticated, (req,res) => {
+    console.log(req.user);
     res.render('diary', {
       user: req.user
     })
-    console.log(req.user.id)
+    console.log("user.id = ",req.user.id)
   })
 
   //route for the graphs page

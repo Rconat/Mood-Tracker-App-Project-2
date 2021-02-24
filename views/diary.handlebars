@@ -1,84 +1,91 @@
+<!--end navBar Row-->
 
-    <!--end navBar Row-->
-
-        <div class="checkBoxContainer row">
-
-            <div class="col-md-8">
+<script src="js/diary.js" type="text/javascript"></script>
 
 
-    <div class="flexcon"><h4>Have you eaten today?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
+<form id="diary">
+    <div class="checkBoxContainer row">
 
-   
-        </div><!--end cxbox one-->
+        <div class="col-md-8">
 
-        <div class="flexcon">
-            <h4>Are you with people?</h4>
-            <div class="formCheckContainer">
-          
-                <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-                <label for="inlineCheckbox2">yes</label>
-        
-                <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-                <label  for="inlineCheckbox3">no</label>
-              </div>
-       
-            </div><!--end cxbox two-->
 
-    <div class="flexcon"><h4>Have you taken any medication?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-   
-        </div><!--end cxbox three-->
+            <div class="flexcon">
+                <h4>Have you eaten today?</h4>
+                <div class="formCheckContainer">
+
+                     <input type="radio" class="eaten-today" name="eaten-today" value="yes"> Yes
+                    <input type="radio" class="eaten-today" name="eaten-today" value="no"> No
+
+                </div>
+            </div>
+            <!--end cxbox one-->
+
+            <div class="flexcon">
+                <h4>Are you with people?</h4>
+                <div class="formCheckContainer">
+
+                    <input type="radio" class="with-people" name="with-people" value="yes"> Yes
+                    <input type="radio" class="with-people" name="with-people" value="no"> No                
+                </div>
+
+            </div>
+            <!--end cxbox two-->
+
+            <div class="flexcon">
+                <h4>Have you taken any medication?</h4>
+                <div class="formCheckContainer">
+
+                     <input type="radio" class="taken-medication" name="taken-medication" value="yes"> Yes
+                    <input type="radio" class="taken-medication" name="taken-medication" value="no"> No                
+                </div>
+
+            </div>
+            <!--end cxbox three-->
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="weatherBox"></div>
+            <!--weather icon-->
+
+        </div>
 
     </div>
-
-    <div class="col-md-4">
-
-        <div class="weatherBox"></div><!--weather icon-->
-
-    </div>
- 
-    </div><!--end check box container-->    
+    <!--end check box container-->
     <div class="row">
         <div class="col-md-12">
 
-         <textarea style="width: 100%; height: 300px;"></textarea>
-           
+            {{!-- <textarea style="width: 100%; height: 300px;"></textarea> --}}
+            <label for="body">Recorded diary:</label>
+			<textarea placeholder="How are feeling today?" class="form-control" rows="10" id="txt-diary"></textarea>
 
         </div>
-    </div><!--end text area-->
+    </div>
+    <!--end text area-->
 
     <h5>Rate your mood for today</h5>
 
 
-    <div class="ratingDiv"></div><!--end ratying div-->
+    <div class="ratingDiv"></div>
+    <!--end ratying div-->
 
-    <div align = "right" class="subBtn">
+    <div align="right" class="subBtn">
 
-    <button type="button" class="btn btn-primary submitButton"> Submit </button><!--end submitbutton-->
+        <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
+        <!--end submitbutton-->
     </div>
 
 
 
-   
-</div><!--end Container-->
 
+    </div>
+    <!--end Container-->
 
-        <div class="lougOut" style="text-align: center;"> <a href="#">Logout</a></div><!---->
+</form>
+
+    <div class="lougOut" style="text-align: center;"> <a href="#">Logout</a></div>
+    <!---->
 
 
 <!--body for handlbars-->
