@@ -2,7 +2,6 @@
 
 const star = $("i")
 const submit = $("#submit")
-
 star.hover(function() {
     var targetStar = (parseInt($(this).data("id")))
     if (!$(this).hasClass("ratingLocked")) {
@@ -40,8 +39,8 @@ star.hover(function() {
         star.removeClass("fas").addClass("far")
     }
 })
-
 star.click(function() {
+    submit.prop("disabled", false)
     var targetStar = (parseInt($(this).data("id")))
     for (let i=0; i <= targetStar; i++) {
         $("i[data-id=" + i + "]").addClass("ratingLocked")
@@ -54,9 +53,7 @@ star.click(function() {
         }
     }
 })
-
 var entryRating
-
 submit.click(function() {
     var ratingArray = []
     for (let i=0; i <= star.length; i++) {
@@ -67,81 +64,3 @@ submit.click(function() {
     entryRating = ratingArray[ratingArray.length-1].getAttribute('data-id')
     console.log(entryRating + " will be saved as the diary entry rating")
 })
-
-
-
-
-// Josh's working code
-
-// const stars = $('i')
-//   stars.hover(function() {
-//     var targetStar = (parseInt($(this).data("id"))) - 1
-//     stars.each(function(i) {
-//       i <= targetStar
-//         ? $(this).removeClass('far').addClass('fas')
-//         : $(this).removeClass('fas').addClass('far')
-//     })
-//   })
-
-
-
-
-
-
-// console.log(star)
-
-// star.hover(function() {
-//     // console.log(parseInt($(this).data("id")))
-//     var targetStar = (parseInt($(this).data("id"))) -1
-//     for (let i=0; i <= targetStar; i++) {
-//         // console.log($("i[data-id=" + i + "]"))
-//         $("i[data-id=" + i + "]").removeClass("far").addClass("fas")
-//         $(this).removeClass("far").addClass("fas")
-//         // console.log($("[data-id]"))
-//         // $("i:eq(targetStar)").removeClass("far").addClass("fas")
-//         // console.log(star[i])
-//         // star[i].removeClass("far").addClass()
-//         // if (star.data("id") <= targetStar) {
-//         //     // star.removeClass("far").addClass("fas")
-//         // }
-//         // console.log($("i:eq(targetStar)"))
-//         // console.log($(this).siblings().data("id"))
-//         // console.log("star array = " + star)
-//         // console.log("has class far = " + $(this).hasClass("far"))
-//         // console.log("target Star = " + targetStar)
-//         // console.log("i = " + i)
-//         // console.log("this.data-id = " + $(this).data("id"))
-//         // console.log(star[targetStar])
-//         // if (i <= targetStar) {
-//         //     $(this).removeClass("far").addClass("fas")
-//         // }
-//     }
-//     for (let i=9; i > targetStar; i--) {
-//         // console.log(i)
-//         // console.log($("i[data-id=" + i+1 + "]"))
-//         $("i[data-id=" + (i+1) + "]").removeClass("fas").addClass("far")
-//     }
-
-//     // if ($(this).hasClass("far")) {
-//     //     for (let i=0; i < star.length; i++) {
-
-//     //         if (i <= (parseInt($(this).data("id")))) {
-//     //                 $(this).removeClass("far").addClass("fas")
-//     //         }
-//     //     }
-//     // } else {
-//         // for (let i=star.length -1; i >= 0; i--) {
-
-//         //     if (i >= (parseInt($(this).data("id")))) {
-//         //             $(this).removeClass("fas").addClass("far")
-//         //     }
-//         // }
-//     // }
-// }, function() {
-
-//     // for (let i=0; i < star.length; i++) {
-//     //     console.log(parseInt($(this).data("id")))
-//     //     if (i <= (parseInt($(this).data("id"))))
-//     //         $(this).removeClass("fas").addClass("far")
-//     // }
-// })
