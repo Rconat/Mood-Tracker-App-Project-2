@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
 
@@ -25,6 +27,12 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
     res.render('members', {
+      user: req.user
+    })
+  });
+
+  app.get("/graphs", isAuthenticated, (req, res) => {
+    res.render('graphs', {
       user: req.user
     })
   });

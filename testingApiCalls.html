@@ -29,7 +29,7 @@
 
     <!-- Testing Chart.js-->
     <div id="chart">
-<canvas id="myChart" width="800" height="400"></canvas>
+<canvas id="myChart" class="chartjs" width="800" height="400"></canvas>
 </div>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -41,7 +41,8 @@
                     label: 'Mood Rating',
                     data: [5, 8, 2, 7, 6, 8, 10],
                     fill: false,
-                    borderColor: "rgb(75, 192, 192)" 
+                    borderColor: "rgb(75, 192, 192)",
+                    lineTension: 0.1
                 }]
             },
             options: {
