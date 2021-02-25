@@ -135,6 +135,7 @@ module.exports = function(app) {
         }
       })
       .then((data) => {
+        console.log(data)
         res.json(data);
       })
       .catch(err => {
