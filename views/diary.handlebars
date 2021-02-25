@@ -4,10 +4,18 @@
 <!--end navBar Row-->
 
 <div class="container">
+    <h1>Record a Mood</h1>
     <form id="diary">
         <div class="row">
 
-            <div class="col-md-8" style="margin-left: 20px; float:left">
+            <div class="col-md-8 mood-question-block">
+
+                <div id="zip-div" class="zip-inline required">
+                    <h4 style="width:60%" class="required-label">Zip Code: </h4>
+                    <input id="zip" name="zip" placeholder="Zip" type="text" class="form-control" id="zip" required>
+
+                    {{!-- <div id="popup-info">We use your zip to get the weather</div> --}}
+                </div>
 
                 <div class="flexcon">
                     <h4>Have you eaten today?</h4>
@@ -61,7 +69,7 @@
 
 
         <div class="row flexcon">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <h4>Rate your mood for today!</h4>
                 <div class="ratingDiv">
 
@@ -78,26 +86,14 @@
                     <br>
                 </div>
             </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
-            </div>
+        </div>
+
+        <div class="row">
+            <br>
+            <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
         </div>
         <!--end rating div-->
 
-
-        <div>
-
-            {{!-- <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button> --}}
-        </div>
-        <!--end submitbutton-->
     </form>
 </div>
 
-
-<!--end Container-->
-
-
-
-
-
-<!--body for handlbars-->

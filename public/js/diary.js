@@ -5,6 +5,9 @@ $(document).ready(function () {
 
     const diaryForm = $("#diary");
 
+    const txtZip = $("#zip");
+    let zip;
+
     const radEatenToday = $(".eaten-today");
     let eaten_today;
 
@@ -17,45 +20,46 @@ $(document).ready(function () {
     const txtDiary = $("#txt-diary");
     let user_diary;
 
-    $(diaryForm).on("submit", handleFormSubmit);
+    const btnSubmit = $(".submit");
+    let UserId = parseInt( btnSubmit.attr("data-userId"))
 
+    $(diaryForm).on("submit", handleFormSubmit);
 
 
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        // Wont submit the disary if we are missing the min requirements
+        // Won't submit the diary if we are missing the min requirements
         //
+
+        zip = parseInt( txtZip.val());
 
         for (const rb of radEatenToday) {
             if (rb.checked) {
-                eaten_today = rb.value;
-                console.log("eaten today: ", eaten_today);
+                eaten_today = rb.value;            
                 break;
             }
         }
 
         for (const rb of radWithPeople) {
             if (rb.checked) {
-                with_others = rb.value;
-                console.log("with people: ", with_others);
+                with_others = rb.value;               
                 break;
             }
         }
 
         for (const rb of radTakenMedication) {
             if (rb.checked) {
-                medications_today = rb.value;
-                console.log("with people: ", medications_today);
+                medications_today = rb.value;                
                 break;
             }
         }
 
         user_diary = txtDiary.val();
-        console.log(user_diary);
 
         var newMood = {
-            UserId: 1,
+            UserId: UserId,
+            zip,
             with_others: with_others === "yes",
             eaten_today: eaten_today === "yes",
             medications_today: medications_today === "yes",
@@ -63,11 +67,11 @@ $(document).ready(function () {
             mood_rating: 5
         }
 
-        console.log("test");
+        
 
-        $.post("/api/mood",
-            newMood)
-            .then(() => {
+        $.post("/api/mood", newMood)
+            .then((res) => {                
+                console.log("finished POST");
                 window.location.replace("/members");
                 // If there's an error, log the error
             })
