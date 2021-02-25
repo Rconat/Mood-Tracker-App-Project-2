@@ -131,7 +131,8 @@ module.exports = function(app) {
     } else {
       db.Mood.findAll({
         where: {
-          UserId: req.user.id
+          UserId: req.user.id,
+          date_created: req.targetDates
         }
       })
       .then((data) => {
