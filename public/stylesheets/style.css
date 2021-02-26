@@ -125,3 +125,7 @@ button.submit {
   border-color: #5bc0de;
 }
 
+ .hide{
+   display: none;
+
+ }
