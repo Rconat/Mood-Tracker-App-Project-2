@@ -86,17 +86,29 @@ $(document).ready(() => {
                 // labels: ['Red'],
                 labels: labels,
                 datasets: [{
+<<<<<<< HEAD
                     label: 'Last 10 Entries Mood Rating',
+=======
+                    label: 'Last 15 Entries Mood Rating',
+>>>>>>> kim-graphs-7
                     fill: false,
                     data: data,
                     backgroundColor: "#88d8b0",
                     borderColor: "#88d8b0",
+<<<<<<< HEAD
                     lineTension: 0.0                   
+=======
+                    lineTension: 0.2                 
+>>>>>>> kim-graphs-7
                 }]
             },
             options: {
-                responsive: false
-            }
+                responsive: true
+            } ,
+            title: {
+                display: true,
+                text: "Mood Ratings"
+              }
         });
     }
 
@@ -106,7 +118,7 @@ $(document).ready(() => {
 
         var ctx = document.getElementById('myChart2').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'bar',           
             data: {
                 labels: labelGroupArray,
                 datasets: [
@@ -133,8 +145,12 @@ $(document).ready(() => {
                 ]
             },
             options: {
-                responsive: false
-            }
+                responsive: true
+            },
+            title: {
+                display: true,
+                text: "Mood Ratings With Others"
+              }
         });
     }
 
