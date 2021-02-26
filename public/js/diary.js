@@ -1,4 +1,4 @@
-console.log("diary.js")
+
 const weatherBtn = document.getElementById("findWeatherButon");
 const zipcodeInput = document.getElementById('zipCodeInput')
 
@@ -12,12 +12,19 @@ $(weatherBtn).on('click', ()=>{
 
    
     $.ajax({ url: queryURL, method: "GET"}).then(function (response) {
-        var icon = response.weather[0].icon
-        var iconUrl =  "http://openweathermap.org/img/w/" + icon + ".png"
 
-        $('weatherBox').attr('<img src = "http://openweathermap.org/img/wn/10d@2x.png">')
-            
+        console.log('clicked')
+
+
+        const icon = response.weather[0].icon
+        const iconUrl =  "http://openweathermap.org/img/w/" + icon + ".png"
+        
+
+        $('#wicon').attr('src', iconUrl);
+        
+        
     });
+    $('#wicon').removeClass('hide')
 
 })
 
