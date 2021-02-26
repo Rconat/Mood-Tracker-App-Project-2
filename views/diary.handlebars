@@ -1,146 +1,94 @@
 <!--end navBar Row-->
 
 <script src="js/diary.js" type="text/javascript"></script>
-    <!--end navBar Row-->
+<!--end navBar Row-->
 
-        <div class="checkBoxContainer row">
+<div class="container">
+    <h1>Record a Mood</h1>
+    <form id="diary">
+        <div class="row">
 
+            <div class="col-md-8 mood-question-block">
+
+                <div id="zip-div" class="zip-inline required">
+                    <h4 style="width:60%" class="required-label">Zip Code: </h4>
+                    <input id="zip" name="zip" placeholder="Zip" type="text" class="form-control" id="zip" required>
+
+                    {{!-- <div id="popup-info">We use your zip to get the weather</div> --}}
+                </div>
+
+                <div class="flexcon">
+                    <h4>Have you eaten today?</h4>
+                    <div class="radio-group">
+
+                        <input type="radio" class="eaten-today" name="eaten-today" value="yes" style="margin: 5px"> Yes
+                        <input type="radio" class="eaten-today" name="eaten-today" value="no"
+                            style="margin-right: 5px; margin-left:20px"> No
+                    </div>
+                </div>
+
+                <div class="flexcon">
+                    <h4>Are you with people?</h4>
+                    <div class="radio-group">
+
+                        <input type="radio" class="with-people" name="with-people" value="yes" style="margin: 5px"> Yes
+                        <input type="radio" class="with-people" name="with-people" value="no"
+                            style="margin-right: 5px; margin-left:20px"> No
+                    </div>
+                </div>
+
+                <div class="flexcon">
+
+                    <h4>Have you taken any medications?</h4>
+                    <div class="radio-group">
+                        <input type="radio" class="radio-1" name="taken-medication" value="yes" style="margin: 5px"> Yes
+                        <input type="radio" class="radio-2" name="taken-medication" value="no"
+                            style="margin-right: 5px; margin-left:20px"> No
+                    </div>
+                </div>
+
+            </div> <!-- end col 8 -->
+
+            <div class="col-md-4">
+                <div class="weatherBox"></div>
+                <!--weather icon-->
+            </div>
+
+        </div>
+        <!--end row-->
+
+        <div class="row flexcon">
+            <div class="col-md-12">
+                <h4>Your diary entry:</h4>
+                <textarea placeholder="How are you feeling today?" class="form-control" rows="5"
+                    id="txt-diary"></textarea>
+
+            </div>
+        </div>
+        <!--end text area-->
+
+        <div class="row flexcon">
             <div class="col-md-8">
+                <h4>Rate your mood for today!</h4>
+                <div class="ratingDiv">
 
-
-    <div class="flexconDiary"><h4>Have you eaten today?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-
-   
-        </div><!--end cxbox one-->
-
-        <div class="flexconDiary">
-            <h4>Are you with people?</h4>
-            <div class="formCheckContainer">
-          
-                <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-                <label for="inlineCheckbox2">yes</label>
-        
-                <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-                <label  for="inlineCheckbox3">no</label>
-              </div>
-       
-            </div><!--end cxbox two-->
-
-    <div class="flexconDiary"><h4>Have you taken any medication?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-   
-        </div><!--end cxbox three-->
-
-
-<form id="diary">
-    <div class="checkBoxContainer row">
-
-        <div class="col-md-8">
-
-
-            <div class="flexcon">
-                <h4>Have you eaten today?</h4>
-                <div class="formCheckContainer">
-
-                     <input type="radio" class="eaten-today" name="eaten-today" value="yes"> Yes
-                    <input type="radio" class="eaten-today" name="eaten-today" value="no"> No
-
+                    <i class="far fa-star" data-id="1"> </i>
+                    <i class="far fa-star" data-id="2"></i>
+                    <i class="far fa-star" data-id="3"></i>
+                    <i class="far fa-star" data-id="4"></i>
+                    <i class="far fa-star" data-id="5"></i>
+                    <i class="far fa-star" data-id="6"></i>
+                    <i class="far fa-star" data-id="7"></i>
+                    <i class="far fa-star" data-id="8"></i>
+                    <i class="far fa-star" data-id="9"></i>
+                    <i class="far fa-star" data-id="10"></i>
+                    <br>
                 </div>
             </div>
-            <!--end cxbox one-->
-
-            <div class="flexcon">
-                <h4>Are you with people?</h4>
-                <div class="formCheckContainer">
-
-                    <input type="radio" class="with-people" name="with-people" value="yes"> Yes
-                    <input type="radio" class="with-people" name="with-people" value="no"> No                
-                </div>
-
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
             </div>
-            <!--end cxbox two-->
-
-            <div class="flexcon">
-                <h4>Have you taken any medication?</h4>
-                <div class="formCheckContainer">
-
-                     <input type="radio" class="taken-medication" name="taken-medication" value="yes"> Yes
-                    <input type="radio" class="taken-medication" name="taken-medication" value="no"> No                
-                </div>
-
-            </div>
-            <!--end cxbox three-->
-
         </div>
 
-        <div class="col-md-4">
-
-            <div class="weatherBox"></div>
-            <!--weather icon-->
-
-        </div>
-
-    </div>
-    <!--end check box container-->
-    <div class="row">
-        <div class="col-md-12">
-
-            {{!-- <textarea style="width: 100%; height: 300px;"></textarea> --}}
-            <label for="body">Recorded diary:</label>
-			<textarea placeholder="How are feeling today?" class="form-control" rows="10" id="txt-diary"></textarea>
-
-        </div>
-    </div>
-    <!--end text area-->
-
-    <h5>Rate your mood for today</h5>
-
-
-    <div class="ratingDiv">
-        <i class="far fa-star" data-id="1"> </i>
-        <i class="far fa-star" data-id="2"></i>
-        <i class="far fa-star" data-id="3"></i>
-        <i class="far fa-star" data-id="4"></i>
-        <i class="far fa-star" data-id="5"></i>
-        <i class="far fa-star" data-id="6"></i>
-        <i class="far fa-star" data-id="7"></i>
-        <i class="far fa-star" data-id="8"></i>
-        <i class="far fa-star" data-id="9"></i>
-        <i class="far fa-star" data-id="10"></i>
-    <br>
-    
-    
-    </div><!--end ratying div-->
-
-    <div align="right" class="subBtn">
-
-        <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
-        <!--end submitbutton-->
-    </div>
-
-
-
-
-    </div>
-    <!--end Container-->
-
-</form>
-
-
-
-<!--body for handlbars-->
+    </form>
+</div>

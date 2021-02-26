@@ -51,27 +51,27 @@ module.exports = function(app) {
       //   id: req.user.id
       // });
 
-      console.log("req.user = ", req.user);
+      //console.log("req.user = ", req.user);
       db.Mood.findAll({
         where: {
           UserId: req.user.id
         }
       })
         .then(function(data) {
-          console.log("Mood data: ",data);
+          // console.log("Mood data: ",data);
 
-          data.forEach(element => {
-            console.log("create on: ",element.createdAt)
-            console.log("create on: ", element.createdAt.toLocaleString("default", { weekday: "long" }))
-            console.log("am or pm: ",element.createdAt.getHours()  )
-            console.log("zip: ",element.zip)
-            console.log("weather: ",element.weather_abbrev)
-            console.log("with others: ",element.with_others)
-            console.log("eaten today: ",element.eaten_today)
-            console.log("diary: ",element.user_diary)
-            console.log("mood stars: ",element.mood_rating)
-            
-          });
+          // data.forEach(element => {
+          //   console.log("create on: ",element.createdAt)
+          //   console.log("create on: ", element.createdAt.toLocaleString("default", { weekday: "long" }))
+          //   console.log("am or pm: ",element.createdAt.getHours()  )
+          //   console.log("zip: ",element.zip)
+          //   console.log("weather: ",element.weather_abbrev)
+          //   console.log("with others: ",element.with_others)
+          //   console.log("eaten today: ",element.eaten_today)
+          //   console.log("diary: ",element.user_diary)
+          //   console.log("mood stars: ",element.mood_rating)
+          //   console.log("zip: ",element.zip)
+          // });
 
           res.json(data);
         })
@@ -105,7 +105,7 @@ module.exports = function(app) {
   // UserId is the Mood foreign key between tables, Userss and Mood
 
   app.post("/api/mood", (req, res) => {
-    console.log(req.body);
+    
     db.Mood.create({
       UserId: req.body.UserId,
       zip: req.body.zip,
@@ -118,9 +118,9 @@ module.exports = function(app) {
     })
       .then((data) => {
         res.json(data);
+        //res.redirect(307, "/members");
       })
-      .catch(err => {
-        console.log("in posting new mood")
+      .catch(err => {       
         res.status(401).json(err);
       });
   });
