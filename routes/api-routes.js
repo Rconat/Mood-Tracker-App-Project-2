@@ -57,7 +57,10 @@ module.exports = function(app) {
       db.Mood.findAll({
         where: {
           UserId: req.user.id
-        }
+        },
+        order: [
+           ["id", "DESC"]
+        ]
       })
         .then(function(data) {
           // console.log("Mood data: ",data);
