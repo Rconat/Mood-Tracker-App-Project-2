@@ -9,16 +9,6 @@ $(document).ready(() => {
         MoodByDate(data);
         MoodWith(data);
     });
-<<<<<<< HEAD
-  });
-
-  // populate graph with latest entries
-
-  // modal to pop up on node click
-    // close modal on 'x' click
-
-  // graphs associating yes//no answers
-=======
 
     let labelArray = [];
     let dataArray = [];
@@ -96,11 +86,12 @@ $(document).ready(() => {
                 // labels: ['Red'],
                 labels: labels,
                 datasets: [{
-                    label: 'Last 10 Days Mood Rating',
+                    label: 'Last 10 Entries Mood Rating',
                     fill: false,
                     data: data,
                     backgroundColor: "#88d8b0",
-                    borderColor: "#88d8b0"                   
+                    borderColor: "#88d8b0",
+                    lineTension: 0.0                   
                 }]
             },
             options: {
@@ -149,4 +140,3 @@ $(document).ready(() => {
 
 });
 
->>>>>>> kim-merge-6
