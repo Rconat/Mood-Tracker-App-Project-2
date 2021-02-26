@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // Getting jQuery references to the post body, title, form, and author select
+    // Getting jQuery references to the form and fields
 
     const diaryForm = $("#diary");
 
@@ -84,6 +84,9 @@ $(document).ready(function () {
             });
     }
 
+    //
+    // star rating hover 
+    
     const star = $("i")
     star.hover(function () {
         var targetStar = (parseInt($(this).data("id")))
