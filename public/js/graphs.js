@@ -8,7 +8,6 @@ $(document).ready(() => {
 
         MoodByDate(data);
         MoodWith(data);
-
     });
 
     let labelArray = [];
@@ -29,7 +28,7 @@ $(document).ready(() => {
             labelArray.push(element.createdAt.slice(0, 10));
 
             ++i;
-            if (i > 9)
+            if (i > 15)
                 return false;
 
             return true;
@@ -91,13 +90,7 @@ $(document).ready(() => {
                     fill: false,
                     data: data,
                     backgroundColor: "#88d8b0",
-                    borderColor: "#88d8b0"
-                    // backgroundColor: [
-                    //     "rgba(105,51,153, 0.5)"
-                    // ],
-                    // borderColor: [
-                    //     "rgba(105,51,153, 0.5)"
-                    // ]
+                    borderColor: "#88d8b0"                   
                 }]
             },
             options: {
