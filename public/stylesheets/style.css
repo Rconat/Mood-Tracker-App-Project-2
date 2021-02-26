@@ -107,15 +107,6 @@ form.login {
   margin: 5px;
 }
 
-/* #zip-div #popup-info {
-  display: none;
-}
-
-#zip-div:hover #popup-info {
-  display: block;
-  
-} */
-
 
 button.submit {
   float: right;
@@ -143,6 +134,11 @@ button.submit {
 
  .hide{
    display: none;
-
  }
+
+ .graphButtons{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
 

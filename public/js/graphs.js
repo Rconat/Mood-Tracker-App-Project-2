@@ -86,16 +86,21 @@ $(document).ready(() => {
                 // labels: ['Red'],
                 labels: labels,
                 datasets: [{
-                    label: 'Last 10 Days Mood Rating',
+                    label: 'Last 15 Entries Mood Rating',
                     fill: false,
                     data: data,
                     backgroundColor: "#88d8b0",
-                    borderColor: "#88d8b0"                   
+                    borderColor: "#88d8b0",
+                    lineTension: 0.3                 
                 }]
             },
             options: {
-                responsive: false
-            }
+                responsive: true,
+                title: {
+                    display: true,
+                    text: "Mood Ratings"
+                  }
+            }             
         });
     }
 
@@ -105,7 +110,7 @@ $(document).ready(() => {
 
         var ctx = document.getElementById('myChart2').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'bar',           
             data: {
                 labels: labelGroupArray,
                 datasets: [
@@ -132,10 +137,13 @@ $(document).ready(() => {
                 ]
             },
             options: {
-                responsive: false
-            }
+                responsive: true,
+                title: {
+                    display: true,
+                    text: "Mood Ratings With Others"
+                  }
+            }           
         });
     }
 
 });
-
