@@ -1,154 +1,33 @@
 <!--end navBar Row-->
-
 <script src="js/diary.js" type="text/javascript"></script>
 <!--end navBar Row-->
-
 <div class="container">
     <h1>Record a Mood</h1>
     <form id="diary">
         <div class="row">
-
             <div class="col-md-8 mood-question-block">
-
                 <div id="zip-div" class="zip-inline required">
                     <h4 style="width:60%" class="required-label">Zip Code: </h4>
                     <input id="zip" name="zip" placeholder="Zip" type="text" class="form-control" id="zip" required>
-    <div id= "diaryDiv" class="flexconDiary">
-        <h4>Have you eaten today?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-
-   
-        </div><!--end cxbox one-->
-
-        <div class="flexconDiary">
-            <h4>Are you with people?</h4>
-            <div class="formCheckContainer">
-          
-                <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-                <label for="inlineCheckbox2">yes</label>
-        
-                <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-                <label  for="inlineCheckbox3">no</label>
-              </div>
-       
-            </div><!--end cxbox two-->
-
-    <div class="flexconDiary"><h4>Have you taken any medication?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-   
-        </div><!--end cxbox three-->
-
-
-<form id="diary">
-    <div class="checkBoxContainer row">
-
-        <div class="col-md-8">
-
-
-            <div class="flexcon">
-                <h4>Have you eaten today?</h4>
-                <div class="formCheckContainer">
-
-                     <input type="radio" class="eaten-today" name="eaten-today" value="yes"> Yes
-                    <input type="radio" class="eaten-today" name="eaten-today" value="no"> No
-
-<<<<<<< HEAD
                     {{!-- <div id="popup-info">We use your zip to get the weather</div> --}}
                 </div>
-=======
-    <div class="flexcon"><h4>Have you eaten today?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-
-   
-        </div><!--end cxbox one-->
-
-        <div class="flexcon">
-            <h4>Are you with people?</h4>
-            <div class="formCheckContainer">
-          
-                <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-                <label for="inlineCheckbox2">yes</label>
-        
-                <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-                <label  for="inlineCheckbox3">no</label>
-              </div>
-       
-            </div><!--end cxbox two-->
-
-    <div class="flexcon"><h4>Have you taken any medication?</h4>
-        <div class="formCheckContainer">
-      
-            <input  type="checkbox" id="inlineCheckbox2" value="optionYes">
-            <label for="inlineCheckbox2">yes</label>
-    
-            <input type="checkbox" id="inlineCheckbox3" value="optionNo">
-            <label  for="inlineCheckbox3">no</label>
-          </div>
-   
-        </div><!--end cxbox three-->
-
-    </div>
-
-    <input id = "zipCodeInput"></input><button id="findWeatherButon">Whats the weather?</button><!--zipcodeInput-->
-
-    <div class="col-md-4">
-
-        <div id="icon"><img id="wicon" class = "hide" src="" alt="Weather icon"></div><!--weather icon-->
-
-    </div>
- 
-    </div><!--end check box container-->    
-    <div class="row">
-        <div class="col-md-12">
-
-         <textarea style="width: 100%; height: 300px;"></textarea>
-           
->>>>>>> kristina
-
                 <div class="flexcon">
                     <h4>Have you eaten today?</h4>
                     <div class="radio-group">
-
                         <input type="radio" class="eaten-today" name="eaten-today" value="yes" style="margin: 5px"> Yes
                         <input type="radio" class="eaten-today" name="eaten-today" value="no"
                             style="margin-right: 5px; margin-left:20px"> No
                     </div>
                 </div>
-
                 <div class="flexcon">
                     <h4>Are you with people?</h4>
                     <div class="radio-group">
-
                         <input type="radio" class="with-people" name="with-people" value="yes" style="margin: 5px"> Yes
                         <input type="radio" class="with-people" name="with-people" value="no"
                             style="margin-right: 5px; margin-left:20px"> No
                     </div>
                 </div>
-
                 <div class="flexcon">
-
-<<<<<<< HEAD
                     <h4>Have you taken any medications?</h4>
                     <div class="radio-group">
                         <input type="radio" class="radio-1" name="taken-medication" value="yes" style="margin: 5px"> Yes
@@ -156,21 +35,13 @@
                             style="margin-right: 5px; margin-left:20px"> No
                     </div>
                 </div>
-=======
-    <a href="/graphs"> <button type="button" class="btn btn-primary submitButton"  id ="submitButton"> Submit </button></a><!--end submitbutton-->
-    </div>
->>>>>>> kristina
-
             </div> <!-- end col 8 -->
-
             <div class="col-md-4">
                 <div class="weatherBox"></div>
-                <!--weather icon-->
+                <div id="icon"><img id="wicon" src="" alt="Weather icon"></div>         
             </div>
-
         </div>
         <!--end row-->
-
         <div class="row flexcon">
             <div class="col-md-12">
                 <h4>Your diary entry:</h4>
@@ -180,12 +51,10 @@
             </div>
         </div>
         <!--end text area-->
-
         <div class="row flexcon">
             <div class="col-md-8">
                 <h4>Rate your mood for today!</h4>
                 <div class="ratingDiv">
-
                     <i class="far fa-star" data-id="1"> </i>
                     <i class="far fa-star" data-id="2"></i>
                     <i class="far fa-star" data-id="3"></i>
@@ -203,6 +72,5 @@
                 <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
             </div>
         </div>
-
     </form>
 </div>
