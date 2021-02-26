@@ -127,7 +127,6 @@ module.exports = function(app) {
       });
   });
 
-<<<<<<< HEAD
   app.get("/diary", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -143,7 +142,6 @@ module.exports = function(app) {
     }
   });
 
-=======
   app.get("/api/graphs", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -164,6 +162,5 @@ module.exports = function(app) {
       });
     }
   })
->>>>>>> RyanBEscript
 
 };
