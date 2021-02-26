@@ -5,4 +5,3 @@ $(document).ready(() => {
     $(".member-name").text(data.email);
   });
 });
-

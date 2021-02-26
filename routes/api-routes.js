@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
@@ -140,5 +142,25 @@ module.exports = function(app) {
     }
   });
 
+  app.get("/api/graphs", (req, res) => {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Mood.findAll({
+        where: {
+          UserId: req.user.id,
+          date_created: req.targetDates
+        }
+      })
+      .then((data) => {
+        console.log(data)
+        res.json(data);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+    }
+  })
 
 };
