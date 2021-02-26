@@ -11,9 +11,9 @@ form.login {
 
 .flexconDiary { display:flex;
      
-    justify-content: space-evenly;
     font-size: 25px;
     float: left;  
+    width:100%;
  }
 
  .checkBoxContainer{
@@ -77,4 +77,19 @@ form.login {
 .pastEntryButton{
     margin-bottom: 2px;
   
+}
+
+#diaryDiv {
+  width: 2000px;
+  float: left;
+}
+
+#graphDiv {
+  width: 1500px;
+  float: left;
+}
+
+#accountDiv {
+  width: 1500px;
+  float: left;
 }
