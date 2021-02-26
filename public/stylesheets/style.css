@@ -125,8 +125,7 @@ button.submit {
   border-color: #5bc0de;
 }
 
-<<<<<<< HEAD
-=======
+
 #diaryDiv {
   width: 2000px;
   float: left;
@@ -141,4 +140,9 @@ button.submit {
   width: 1500px;
   float: left;
 }
->>>>>>> ZacBranch6
+
+ .hide{
+   display: none;
+
+ }
+
