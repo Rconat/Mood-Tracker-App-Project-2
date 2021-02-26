@@ -51,7 +51,7 @@ module.exports = function(app) {
       //   id: req.user.id
       // });
 
-      console.log("req.user = ", req.user);
+      //console.log("req.user = ", req.user);
       db.Mood.findAll({
         where: {
           UserId: req.user.id

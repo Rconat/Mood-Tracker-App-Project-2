@@ -67,9 +67,8 @@
         </div>
         <!--end text area-->
 
-
         <div class="row flexcon">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <h4>Rate your mood for today!</h4>
                 <div class="ratingDiv">
 
@@ -86,14 +85,10 @@
                     <br>
                 </div>
             </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
+            </div>
         </div>
-
-        <div class="row">
-            <br>
-            <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
-        </div>
-        <!--end rating div-->
 
     </form>
 </div>
-

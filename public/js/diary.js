@@ -1,8 +1,6 @@
 $(document).ready(function () {
     // Getting jQuery references to the post body, title, form, and author select
 
-    //const db = require("../models");
-
     const diaryForm = $("#diary");
 
     const txtZip = $("#zip");
@@ -29,7 +27,9 @@ $(document).ready(function () {
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        // Won't submit the diary if we are missing the min requirements
+        console.log("submit!");
+
+        // Won't submit the diary if we are missing the zip requirement
         //
 
         zip = parseInt( txtZip.val());
@@ -57,6 +57,8 @@ $(document).ready(function () {
 
         user_diary = txtDiary.val();
 
+        let mood_rating = GetStarRating();
+
         var newMood = {
             UserId: UserId,
             zip,
@@ -64,14 +66,16 @@ $(document).ready(function () {
             eaten_today: eaten_today === "yes",
             medications_today: medications_today === "yes",
             user_diary: user_diary,
-            mood_rating: 5
+            mood_rating: mood_rating
         }
 
+        console.log("New Mood ", newMood);
         
 
         $.post("/api/mood", newMood)
             .then((res) => {                
-                console.log("finished POST");
+                
+                console.log("pausing");
                 window.location.replace("/members");
                 // If there's an error, log the error
             })
@@ -81,7 +85,6 @@ $(document).ready(function () {
     }
 
     const star = $("i")
-    const submit = $("#submit")
     star.hover(function () {
         var targetStar = (parseInt($(this).data("id")))
         if (!$(this).hasClass("ratingLocked")) {
@@ -120,7 +123,7 @@ $(document).ready(function () {
         }
     })
     star.click(function () {
-        submit.prop("disabled", false)
+        btnSubmit.prop("disabled", false)
         var targetStar = (parseInt($(this).data("id")))
         for (let i = 0; i <= targetStar; i++) {
             $("i[data-id=" + i + "]").addClass("ratingLocked")
@@ -133,16 +136,19 @@ $(document).ready(function () {
             }
         }
     })
-    var entryRating
-    submit.click(function () {
+    
+    function GetStarRating() {
+        var entryRating
         var ratingArray = []
-        for (let i = 0; i <= star.length; i++) {
-            if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
-                ratingArray.push(star[i])
+            for (let i = 0; i <= star.length; i++) {
+                if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
+                    ratingArray.push(star[i])
+                }
             }
-        }
-        entryRating = ratingArray[ratingArray.length - 1].getAttribute('data-id')
-        console.log(entryRating + " will be saved as the diary entry rating")
-    })
+            entryRating = ratingArray[ratingArray.length - 1].getAttribute('data-id')
+            console.log(entryRating + " will be saved as the diary entry rating")
+
+            return entryRating;
+    }
 })
 

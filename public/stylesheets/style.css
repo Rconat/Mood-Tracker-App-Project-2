@@ -120,6 +120,8 @@ form.login {
 button.submit {
   float: right;
   margin-bottom: 30px;
-  
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
 }
 
