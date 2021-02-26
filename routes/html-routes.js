@@ -31,6 +31,7 @@ module.exports = function(app) {
     })
   });
 
+<<<<<<< HEAD
   //route for the diary page
   app.get("/diary", isAuthenticated, (req,res) => {
     console.log(req.user);
@@ -47,4 +48,11 @@ module.exports = function(app) {
     })
   })
 
+=======
+  app.get("/graphs", isAuthenticated, (req, res) => {
+    res.render('graphs', {
+      user: req.user
+    })
+  });
+>>>>>>> RyanBEscript
 };
