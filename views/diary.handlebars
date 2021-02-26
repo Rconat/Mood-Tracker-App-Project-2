@@ -9,7 +9,11 @@
                 <div id="zip-div" class="zip-inline required">
                     <h4 style="width:60%" class="required-label">Zip Code: </h4>
                     <input id="zip" name="zip" placeholder="Zip" type="text" class="form-control" id="zip" required>
+<<<<<<< HEAD
                    
+=======
+                    {{!-- <div id="popup-info">We use your zip to get the weather</div> --}}
+>>>>>>> weatherapi
                 </div>
                 <div class="flexcon">
                     <h4>Have you eaten today?</h4>
@@ -36,9 +40,8 @@
                     </div>
                 </div>
             </div> <!-- end col 8 -->
-            <div class="col-md-4">
-                <div class="weatherBox"></div>
-                <div id="icon"><img id="wicon" src="" alt="Weather icon"></div>         
+            <div id="icon"><img class = "hide" id="wicon" src="" alt="Weather icon"></div>            <!--where incon is being dumped-->
+                <!--weather icon-->
             </div>
         </div>
         <!--end row-->
@@ -47,7 +50,6 @@
                 <h4>Your diary entry:</h4>
                 <textarea placeholder="How are you feeling today?" class="form-control" rows="5"
                     id="txt-diary"></textarea>
-
             </div>
         </div>
         <!--end text area-->
@@ -74,3 +76,6 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript" src="js/weatherapi.js"></script>
+
