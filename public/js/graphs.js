@@ -7,3 +7,10 @@ $(document).ready(() => {
         console.log(data)
     });
   });
+
+  // populate graph with latest entries
+
+  // modal to pop up on node click
+    // close modal on 'x' click
+
+  // graphs associating yes//no answers
