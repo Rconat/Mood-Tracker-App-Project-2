@@ -1,6 +1,15 @@
 $(document).ready(function () {
     // Getting jQuery references to the form and fields
 
+$.get("/api/user_data").then(data => {
+        console.log(data)
+    });
+
+
+
+
+    var ratingArray = [];
+
     const diaryForm = $("#diary");
 
     const txtZip = $("#zip");
@@ -86,7 +95,8 @@ $(document).ready(function () {
 
     //
     // star rating hover 
-    
+
+   
     const star = $("i")
     star.hover(function () {
         var targetStar = (parseInt($(this).data("id")))
@@ -139,10 +149,11 @@ $(document).ready(function () {
             }
         }
     })
-    
+
+
     function GetStarRating() {
         var entryRating
-        var ratingArray = []
+        
             for (let i = 0; i <= star.length; i++) {
                 if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
                     ratingArray.push(star[i])
@@ -150,10 +161,13 @@ $(document).ready(function () {
             }
             entryRating = ratingArray[ratingArray.length - 1].getAttribute('data-id')
             console.log(entryRating + " will be saved as the diary entry rating")
-
+    
             return entryRating;
     }
-    entryRating = ratingArray[ratingArray.length-1].getAttribute('data-id')
-    console.log(entryRating + " will be saved as the diary entry rating")
+    
 })
+
+
+
+
 
