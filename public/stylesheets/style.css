@@ -136,9 +136,20 @@ button.submit {
    display: none;
  }
 
- .graphButtons{
-    display:flex;
-    justify-content: space-between;
-    margin-top: 10px;
+ .btn{
+    /* display:flex;
+    justify-content: space-between; */
+    color: white;
+    float: right;
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+    text-transform: none;
+    margin-right: 40px;
+}
+
+#wicon {
+  min-height: 80px;
+  min-width: 80px;
+  background-color: gainsboro;
 }
 

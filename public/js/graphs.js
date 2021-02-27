@@ -3,12 +3,6 @@
 $(document).ready(() => {
 
     // This file just does a GET request to find the past week's data and updates the HTML on the page
-    $.get("/api/user_data").then(data => {
-        console.log(data)
-
-        MoodByDate(data);
-        MoodWith(data);
-    });
 
     let labelArray = [];
     let dataArray = [];
@@ -19,6 +13,19 @@ $(document).ready(() => {
     let dataNotEatenToday = [];
     let dataTakenMeds = [];
     let dataNotTakenMeds = [];
+
+    const btnWithOthers = $("#with-others");
+    const btnEatenToday = $("#eaten-today");
+    const btnTakenMeds = $("#taken-meds");
+
+    //$(btnEatenToday).on("click", handleEatenToday_Click);
+
+    $.get("/api/user_data").then(data => {
+        console.log(data)
+
+        MoodByDate(data);
+        MoodWith(data);
+    });
 
     function MoodByDate(data) {
         var i = 0;
@@ -45,26 +52,30 @@ $(document).ready(() => {
 
             if (element.with_others) {
                 dataWithOthers.push(element.mood_rating);
+                dataNotWithOthers.push(0);
             }
             else {
                 dataNotWithOthers.push(element.mood_rating);
+                dataWithOthers.push(0);
             }
 
             if (element.eaten_today) {
                 dataEatenToday.push(element.mood_rating);
+                dataNotEatenToday.push(0);
             }
             else {
                 dataNotEatenToday.push(element.mood_rating);
+                dataEatenToday.push(0);
             }
 
             if (element.medications_today) {
-                dataTakenMeds.push(element.medications_today);
+                dataTakenMeds.push(element.mood_rating);
+                dataNotTakenMeds.push(0);
             }
             else {
-                dataNotTakenMeds.push(element.medications_today);
-            }
-
-            labelArray.push(element.createdAt.slice(0, 10));
+                dataNotTakenMeds.push(element.mood_rating);
+                dataTakenMeds.push(0);
+            }            
 
             ++i;
             if (i > 9)
@@ -72,6 +83,7 @@ $(document).ready(() => {
 
             return true;
         });
+
 
         PlotGroupGraph();
     }
@@ -83,7 +95,6 @@ $(document).ready(() => {
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                // labels: ['Red'],
                 labels: labels,
                 datasets: [{
                     label: 'Last 15 Entries Mood Rating',
@@ -91,7 +102,7 @@ $(document).ready(() => {
                     data: data,
                     backgroundColor: "#88d8b0",
                     borderColor: "#88d8b0",
-                    lineTension: 0.3                 
+                    lineTension: 0.3
                 }]
             },
             options: {
@@ -99,8 +110,23 @@ $(document).ready(() => {
                 title: {
                     display: true,
                     text: "Mood Ratings"
-                  }
-            }             
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return "Star rating *" + Number(tooltipItem.yLabel) + " out 10";
+                        }
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Mood Rating'
+                        }
+                    }]
+                }
+            }
         });
     }
 
@@ -110,39 +136,60 @@ $(document).ready(() => {
 
         var ctx = document.getElementById('myChart2').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',           
+            type: 'bar',
             data: {
                 labels: labelGroupArray,
                 datasets: [
                     {
                         label: "With Others",
-                        backgroundColor: "#ff6f69",                        
+                        backgroundColor: "#ff6f69",
                         data: dataWithOthers
                     },
                     {
-                        label: "Not With Others",
-                        backgroundColor: "#ffcc5c",
+                        label: "Alone",
+                        backgroundColor: "#ffb7b4", //"#ffcc5c",
                         data: dataNotWithOthers
+                    },
+                    {
+                        label: "Eaten Today",
+                        backgroundColor: "#88d8b0",
+                        data: dataEatenToday
+                    },
+                    {
+                        label: "Not Eaten Today",
+                        backgroundColor: "#cfefdf", //"#ffcc5c",
+                        data: dataNotEatenToday
+                    },
+                    {
+                        label: "Had Meds",
+                        backgroundColor: "#ffcc5c",
+                        data: dataTakenMeds
+                    },
+                    {
+                        label: "No Meds",
+                        backgroundColor: "#ffe5ad", //"#ffcc5c",
+                        data: dataNotTakenMeds
                     }
-                    // {
-                    //     label: "Eaten Today",
-                    //     backgroundColor: "#88d8b0",
-                    //     data: dataEatenToday
-                    // },
-                    // {
-                    //     label: "Not Eaten Today",
-                    //     backgroundColor: "#ffcc5c",
-                    //     data: dataNotEatenToday
-                    // }
                 ]
             },
             options: {
                 responsive: true,
                 title: {
                     display: true,
-                    text: "Mood Ratings With Others"
-                  }
-            }           
+                    text: "Mood Ratings When With Others"
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Mood Rating"
+                        }
+                    }]
+                }
+            }
         });
     }
 
