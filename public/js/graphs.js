@@ -2,7 +2,6 @@
 
 $(document).ready(() => {
 
-    // This file just does a GET request to find the past week's data and updates the HTML on the page
 
     let labelArray = [];
     let dataArray = [];
@@ -16,12 +15,18 @@ $(document).ready(() => {
 
     let moodChart2;
 
+    //
+    // datasets for our graphs
+
     let datasetWithOthers = {};
     let datasetAlone = {};
     let datasetEatenToday = {};
     let datasetNotEaten = {};
     let datasetTakenMeds = {};
     let datasetNoMeds = {};
+
+    //
+    // btn constants and click events
 
     const btnWithOthers = $("#with-others");
     const btnEatenToday = $("#eaten-today");
@@ -33,23 +38,25 @@ $(document).ready(() => {
     $(btnTakenMeds).on("click", handleMeds_Click);
     $(btnAll).on("click", handleAll_Click);
 
-
+    //
+    // get our data from the database and instantiate the graphs with default info
 
     $.get("/api/user_data").then(data => {
-        console.log(data)
-
         //
-        // default graphs
+        // default graphs to display
 
         MoodByDate(data);
 
         MoodWith(data);
 
         //
-        // build graph datasets for customization
+        // build graph datasets for customize display
 
         BuildDataSet();
     });
+
+    // 
+    // button handlers for custom graph  displays
 
     function handleWithOthers_Click() {
         AddDataSet(datasetWithOthers, datasetAlone, "Mood Ratings: With Others (pets included)");
@@ -64,6 +71,9 @@ $(document).ready(() => {
         AddDataSetAll("Mood Ratings: All Parameters");
     }
 
+    // 
+    // dynamic adding datasets to our custom graph
+
     function AddDataSet(ds1, ds2, title) {
 
         moodChart2.data.datasets.splice(0, moodChart2.data.datasets.length);
@@ -76,6 +86,9 @@ $(document).ready(() => {
         moodChart2.update();
         moodChart2.render();
     }
+
+    //
+    // default graph show all datasets
 
     function AddDataSetAll(title) {
 
@@ -96,6 +109,9 @@ $(document).ready(() => {
         moodChart2.render();
     }
 
+    //
+    // dataset for standard graph shwoing mood over time
+
     function MoodByDate(data) {
         var i = 0;
 
@@ -114,7 +130,7 @@ $(document).ready(() => {
     }
 
     //
-    // build datasets for the graphs to dynamically add or remove
+    // default graph with all datasets - can be customize
 
     function MoodWith(data) {
         var i = 0;
@@ -159,6 +175,9 @@ $(document).ready(() => {
         PlotGroupGraph();
     }
 
+    //
+    // pre-build graph datasets for later use
+
     function BuildDataSet() {
         datasetWithOthers = {
             label: "With Others",
@@ -168,7 +187,7 @@ $(document).ready(() => {
 
         datasetAlone = {
             label: "Alone",
-            backgroundColor: "#ffb7b4", //"#ffcc5c",
+            backgroundColor: "#ffb7b4", 
             data: dataNotWithOthers
         };
 
@@ -180,7 +199,7 @@ $(document).ready(() => {
 
         datasetNotEaten = {
             label: "Not Eaten Today",
-            backgroundColor: "#cfefdf", //"#ffcc5c",
+            backgroundColor: "#cfefdf", 
             data: dataNotEatenToday
         };
 
@@ -192,10 +211,13 @@ $(document).ready(() => {
 
         datasetNoMeds = {
             label: "No Meds",
-            backgroundColor: "#ffe5ad", //"#ffcc5c",
+            backgroundColor: "#ffe5ad",
             data: dataNotTakenMeds
         }
     }
+
+    //
+    // graph plotting
 
     function PlotGraph(labels, data) {
 
@@ -241,9 +263,7 @@ $(document).ready(() => {
         });
     }
 
-    function PlotGroupGraph() {
-
-        console.log(dataEatenToday);
+    function PlotGroupGraph() {       
 
         var ctx = document.getElementById('myChart2').getContext('2d');
         moodChart2 = new Chart(ctx, {
@@ -258,7 +278,7 @@ $(document).ready(() => {
                     },
                     {
                         label: "Alone",
-                        backgroundColor: "#ffb7b4", //"#ffcc5c",
+                        backgroundColor: "#ffb7b4", 
                         data: dataNotWithOthers
                     },
                     {
@@ -268,7 +288,7 @@ $(document).ready(() => {
                     },
                     {
                         label: "Not Eaten Today",
-                        backgroundColor: "#cfefdf", //"#ffcc5c",
+                        backgroundColor: "#cfefdf", 
                         data: dataNotEatenToday
                     },
                     {
@@ -278,7 +298,7 @@ $(document).ready(() => {
                     },
                     {
                         label: "No Meds",
-                        backgroundColor: "#ffe5ad", //"#ffcc5c",
+                        backgroundColor: "#ffe5ad", 
                         data: dataNotTakenMeds
                     }
                 ]
