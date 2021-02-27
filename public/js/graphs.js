@@ -14,18 +14,56 @@ $(document).ready(() => {
     let dataTakenMeds = [];
     let dataNotTakenMeds = [];
 
+    let moodChart2;
+
+    let datasetWithOthers = {};
+    let datasetAlone = {};
+
     const btnWithOthers = $("#with-others");
     const btnEatenToday = $("#eaten-today");
     const btnTakenMeds = $("#taken-meds");
 
-    //$(btnEatenToday).on("click", handleEatenToday_Click);
+    $(btnWithOthers).on("click", handleWithOthers_Click);
+
+    
 
     $.get("/api/user_data").then(data => {
         console.log(data)
 
+        //
+        // default graphs
+
         MoodByDate(data);
+
         MoodWith(data);
+
+        //
+        // build
+
+        BuildDataSet();
     });
+
+    function handleWithOthers_Click() {
+        //alert("here")
+        AddDataSet(datasetWithOthers)
+    }
+
+    function AddDataSet(ds) {
+        //moodChart2.data.label.pop();
+        //moodChart2.data.datasets.forEach(dataset => {
+            //console.log(dataset);
+            //dataset.data.pop();
+            //moodChart2.data.datasets.splice(0,1);
+        //});   
+        console.log(ds);
+
+        moodChart2.data.datasets.splice(0,moodChart2.data.datasets.length);
+
+        moodChart2.data.datasets.push(ds);
+
+        moodChart2.update();
+        moodChart2.render();        
+    }
 
     function MoodByDate(data) {
         var i = 0;
@@ -43,6 +81,9 @@ $(document).ready(() => {
 
         PlotGraph(labelArray, dataArray);
     }
+
+    //
+    // build datasets for the graphs to dynamically add or remove
 
     function MoodWith(data) {
         var i = 0;
@@ -84,10 +125,19 @@ $(document).ready(() => {
             return true;
         });
 
-
         PlotGroupGraph();
     }
 
+    function BuildDataSet() {
+        datasetWithOthers = {
+            label: "With Others",
+            backgroundColor: "#ff6f69",
+            data: dataWithOthers
+        }
+
+
+        
+    }
 
     function PlotGraph(labels, data) {
 
@@ -123,6 +173,9 @@ $(document).ready(() => {
                         scaleLabel: {
                             display: true,
                             labelString: 'Mood Rating'
+                        },
+                        ticks: {
+                            beginAtZero: true
                         }
                     }]
                 }
@@ -135,7 +188,7 @@ $(document).ready(() => {
         console.log(dataEatenToday);
 
         var ctx = document.getElementById('myChart2').getContext('2d');
-        var myChart = new Chart(ctx, {
+        moodChart2 = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labelGroupArray,
