@@ -3,14 +3,16 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
+  var tenEntriesArr = []
   $.get("/api/user_data").then(data => {
     $(".member-name").text(data.email);
 
-    console.log(data);
-    console.log(data[0].user_diary)
+    // console.log(data);
+    // console.log(data[0].user_diary)
     const latestDiary = $('.pastEntryBody')
     latestDiary.text(data[0].user_diary)
     
+    pastTenEntries(data);
     MoodByDate(data);
 
   });
@@ -30,7 +32,7 @@ $(document).ready(() => {
         labelArray.push(element.createdAt.slice(0, 10));
 
         ++i;
-        if (i > 15)
+        if (i > 10)
             return false;
 
         return true;
@@ -61,6 +63,39 @@ $(document).ready(() => {
     });
   }
 
+  function pastTenEntries(data) {
+    var i = 0;
+    console.log("pastTenEntries", data)
+    data.every(element => {
+        tenEntriesArr.push([element.user_diary, element.createdAt.slice(0, 10)])
+
+        ++i;
+        if (i > 10)
+            return false;
+
+        return true;
+    });
+    console.log(tenEntriesArr)
+    plotEntries(tenEntriesArr)
+  }
+
+  function plotEntries(tenEntriesArr) {
+    for(var i=0; i<10; i++) {
+      $(".pastEntries").append(`
+      <div class="pastTenEntriesCard" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${tenEntriesArr[i][1]}</h5>
+            <p class="card-text">${tenEntriesArr[i][0]}</p>
+        </div>
+      </div>
+      `)
+    }
+
+    // $(".pastTenEntries").append(`<li>${}</li>`)
+  }
+
+  // $(".pastTenButton").on("click", pastTenEntries())
+  
 });
 
 // populate and display week at a glance

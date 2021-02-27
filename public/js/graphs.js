@@ -83,7 +83,6 @@ $(document).ready(() => {
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                // labels: ['Red'],
                 labels: labels,
                 datasets: [{
                     label: 'Last 10 Days Mood Rating',
