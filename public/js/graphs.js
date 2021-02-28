@@ -2,6 +2,8 @@
 
 $(document).ready(() => {
 
+    //
+    // data arrays
 
     let labelArray = [];
     let dataArray = [];
@@ -65,7 +67,7 @@ $(document).ready(() => {
         AddDataSet(datasetEatenToday, datasetNotEaten, "Mood Ratings: When Eaten Today (not just coffe)");
     }
     function handleMeds_Click() {
-        AddDataSet(datasetTakenMeds, datasetNoMeds, "Mood Ratings: Taken Medications (you deceide)");
+        AddDataSet(datasetTakenMeds, datasetNoMeds, "Mood Ratings: Taken Medications");
     }
     function handleAll_Click() {
         AddDataSetAll("Mood Ratings: All Parameters");
@@ -110,7 +112,7 @@ $(document).ready(() => {
     }
 
     //
-    // dataset for standard graph shwoing mood over time
+    // dataset for standard graph showing mood over time
 
     function MoodByDate(data) {
         var i = 0;
@@ -130,7 +132,7 @@ $(document).ready(() => {
     }
 
     //
-    // default graph with all datasets - can be customize
+    // default graph with all datasets - can be customize with button click
 
     function MoodWith(data) {
         var i = 0;
