@@ -2,7 +2,9 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
-
+/* .container{
+  width:100%;
+} */
 .form-check{
     float: right;
 }
@@ -30,7 +32,7 @@ form.login {
 
  .ratingDiv{
     border-style: solid;
-    border-width: 1px;
+    /* border-width: 1px; */
     height: 50px;
     width: 40%;
     padding-left: 10px;
@@ -107,14 +109,14 @@ form.login {
   margin: 5px;
 }
 
-
+/* 
 button.submit {
   float: right;
   margin-bottom: 30px;
   color: #fff;
   background-color: #5bc0de;
   border-color: #5bc0de;
-}
+} */
 
 
 #diaryDiv {
@@ -137,15 +139,15 @@ button.submit {
  }
 
  .btn{
-    /* display:flex;
-    justify-content: space-between; */
+    display:flex;
+    justify-content: space-between;
     color: white;
     float: right;
-    background-color: #5bc0de;
-    border-color: #5bc0de;
+    background-color: #d1253c;
+    border-color: #d1253c;
     text-transform: none;
     margin-right: 40px;
-    margin-bottom: 20px;;
+    position:relative
 }
 
 #wicon {
@@ -153,4 +155,87 @@ button.submit {
   min-width: 80px;
   background-color: gainsboro;
 }
+#logoutId {
+  float: right;
+}
 
+.backgroundColor{
+  background-color: rgb(235, 231, 231);
+}
+
+.iconColor{
+  color:gold;
+}
+
+.navbarColor {
+  background-color: #96ceb4;
+  height: 100px;
+}
+
+#moodyTitle {
+  font-family: 'Akaya Telivigala', cursive;
+ font-size: 200%;
+
+color:#ff6f69;
+ 
+}
+.center {
+  display: block;
+  margin-left:auto;
+  margin-right: auto;
+  width: 20%;
+  float:left;
+}
+
+.signUpHeader{
+  color: #96ceb4;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.signUpFont{
+ font-size: xx-large;
+ color: #96ceb4;
+}
+
+.orLogInFont{
+  color:#158CBA;
+  font-size: 20px;
+}
+
+.navbar-default{
+  background-color: #96ceb4;
+  width: 100%;
+  border-radius: 0px;
+}
+.membersTitle{
+  font-size: xx-large;
+ color: #ff6f69;
+ font-weight: bold;
+ float: center;
+}
+
+.recordAMood{
+  font-size: xx-large;
+  color: #ff6f69;
+  font-weight: bold;
+}
+
+.diaryBubbles{
+  font-size: xx-large;
+  color: #ffcc5c;
+  font-weight: bold;
+}
+h4{
+  color: #ff6f69;
+  font-weight: bold;
+}
+.navbar-brand{
+  float:left;
+}
+
+#moodyHeader {
+  font-size: 50px;
+  font-family: 'Akaya Telivigala', cursive;
+  color:#ff6f69;
+}
