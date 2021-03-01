@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-4">
 
-                    <h4>Latest dairy entry</h4> 
+                    <h4 id='entryTag'>Latest dairy entry</h4> 
                 </div>
 
                 <div  class="col-md-8">
@@ -35,11 +35,24 @@
                  <a href="/diary"> <button class="btn" id = "nextPage">Next Page</button></a>
                 </div>              
             </div>
-            <div class="pastEnry" style='margin-top: 35px;'>
+            <div class="pastEntry" style='margin-top: 35px;'>
                 <div class="pastEntryBody" style="padding-bottom:250px;">
                     This is some text within a card body.
                 </div>
             </div> <!-- end div for past entry-->
+            
+            <div class="pointEntry" style='margin-top: 35px; display: none;'>
+                <div class="pointEntryBody">
+                    <h3 id="pointDate"></h3>
+                    <p id="pointDiary"></p>
+                    <p id="pointWeather"></p>
+                    <p id="pointEaten"></p>
+                    <p id="pointWithOthers"></p>
+                    <p id="pointMedication"></p>
+                    <p id="pointMoodRate"></p>
+                </div>
+            </div> <!-- end div for point entry-->
+
 
             <div class="pastEntries" style='margin-top: 35px;'>
             </div> <!-- end div for past ten entries-->

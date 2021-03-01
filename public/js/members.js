@@ -11,7 +11,6 @@ $(document).ready(() => {
     latestDiary.text(data[0].user_diary)
     
     MoodByDate(data);
-    // pastTenEntries(data);
 
   });
 
@@ -52,20 +51,63 @@ $(document).ready(() => {
                 data: data,
                 backgroundColor: "#88d8b0",
                 borderColor: "#88d8b0",
-                lineTension: 0.0                   
+                lineTension: 0.3                   
             }]
         },
         options: {
-            responsive: false
+          responsive: false,
+          scales: {
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Mood Rating'
+            },
+            ticks: {
+                beginAtZero: true,
+                suggestedMax: 10
+              }
+            }]
+          }
         }
     });
+
+    // Clicking a point on the Graph will load the details of that entry below
+    document.getElementById("myChart").onclick = function(evt){
+      var activePoints = myChart.getElementsAtEvent(evt);
+
+      $.get("/api/user_data").then(data => {
+        const pointDiary = $('#pointDiary')
+        const pointDate = $('#pointDate')
+        const pointWeather = $('#pointWeather')
+        const pointEaten = $('#pointEaten')
+        const pointWithOthers = $('#pointWithOthers')
+        const pointMedication = $('#pointMedication')
+        const pointMoodRate = $('#pointMoodRate')
+
+        pointDiary.text(data[activePoints[0]._index].user_diary)
+        pointDate.text(data[activePoints[0]._index].createdAt.slice(0, 10))
+        pointWeather.text(data[activePoints[0]._index].weather_abbrev)
+        pointEaten.text(data[activePoints[0]._index].eaten_today)
+        pointWithOthers.text(data[activePoints[0]._index].with_others)
+        pointMedication.text(data[activePoints[0]._index].medications_today)
+        pointMoodRate.text(data[activePoints[0]._index].mood_rating)
+        
+        pointEntry();
+      });
+    };
+  }
+
+  // hiding the latest entry and showing the point clicked entry
+  function pointEntry() {
+    $('#entryTag').hide()
+    $('.pointEntry').show()
+    $('.pastEntry').hide()
   }
 
   function pastTenEntries(data) {
-    console.log("hello")
     $.get("/api/user_data").then(data => {
       var i = 0;
-      console.log("pastTenEntries", data)
+
         data.every(element => {
           var obj = {}
           obj['diary'] = element.user_diary
@@ -78,20 +120,20 @@ $(document).ready(() => {
           
           return true;
         });
-      console.log("second log", tenEntriesArr)
+
       plotEntries(tenEntriesArr)
+
     });
   }
 
   function plotEntries(tenEntriesArr) {
-    console.log(tenEntriesArr)
+
     for(var i=0; i<tenEntriesArr.length; i++) {
-      console.log("loop")
-      console.log
+
       if (i>=10) {
         break
       }
-      console.log(tenEntriesArr[i])
+ 
       $(".pastEntries").append(`
       <div class="pastTenEntriesCard" style="width: 18rem;">
         <div class="card-body">
