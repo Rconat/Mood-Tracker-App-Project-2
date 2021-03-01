@@ -6,23 +6,23 @@ form.login {
   width:100%;
 } */
 .form-check{
-    float: right;
+  float: right;
 }
 
 .flexconDiary { display:flex;
      
-    font-size: 25px;
-    float: left;  
-    width:100%;
+  font-size: 25px;
+  float: left;  
+  width:100%;
  }
 
  .checkBoxContainer{
-     margin-top: 20px;
+    margin-top: 20px;
  }
 
  .weatherBox{
-     display: flex;
-     justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
     border-style: solid;
     border-width: 2px;
     height: 45px;

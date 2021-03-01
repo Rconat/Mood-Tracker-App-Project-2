@@ -18,7 +18,7 @@ $(document).ready(() => {
     
     latestDiary.text("Diary entry: " + data[0].user_diary)
     latestDate.text("Date of entry: " + data[0].createdAt.slice(0, 10))
-    // latestWeather.text("Weather on day of entry: " + data.weather_abbrev)
+    // latestWeather.text("Weather on day of entry: " + data[0].weather_abbrev)
     latestEaten.text("Had you eaten? : " + data[0].eaten_today)
     latestWithOthers.text("Were you with others? : " + data[0].with_others)
     latestMedication.text("Did you take medication? : " + data[0].medications_today)
@@ -93,7 +93,7 @@ $(document).ready(() => {
       $.get("/api/user_data").then(data => {
         const pointDiary = $('#pointDiary')
         const pointDate = $('#pointDate')
-        const pointWeather = $('#pointWeather')
+        // const pointWeather = $('#pointWeather')
         const pointEaten = $('#pointEaten')
         const pointWithOthers = $('#pointWithOthers')
         const pointMedication = $('#pointMedication')
