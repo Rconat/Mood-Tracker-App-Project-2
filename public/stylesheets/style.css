@@ -147,7 +147,11 @@ button.submit {
     border-color: #d1253c;
     text-transform: none;
     margin-right: 40px;
+<<<<<<< HEAD
     position:relative
+=======
+    margin-bottom: 20px;;
+>>>>>>> kim-graph-10
 }
 
 #wicon {

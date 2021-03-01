@@ -29,9 +29,13 @@ $(document).ready(function () {
         event.preventDefault();
 
 
-        // Won't submit the diary if we are missing the zip requirement
+        // zip will be a required field for submitting
         //
+
         zip = parseInt( txtZip.val());
+
+        //
+        // read all the radio button choices
 
         for (const rb of radEatenToday) {
             if (rb.checked) {
@@ -55,6 +59,9 @@ $(document).ready(function () {
 
         let mood_rating = GetStarRating();
 
+        //
+        // mood object
+
         var newMood = {
             UserId: UserId,
             zip,
@@ -65,11 +72,13 @@ $(document).ready(function () {
             mood_rating: mood_rating
         }
         
+        //
+        // post this mood record
+
         $.post("/api/mood", newMood)
             .then((res) => {                
-                console.log("pausing");
-                window.location.replace("/members");
-                // If there's an error, log the error
+               
+                window.location.replace("/members");                
             })
             .catch(err => {
                 console.log(err);
@@ -132,6 +141,9 @@ $(document).ready(function () {
         }
     })
 
+    //
+    // read the number of stars selected
+
     function GetStarRating() {
         var entryRating
         var ratingArray = []
@@ -141,7 +153,7 @@ $(document).ready(function () {
                 }
             }
             entryRating = ratingArray[ratingArray.length - 1].getAttribute('data-id')
-            console.log(entryRating + " will be saved as the diary entry rating")
+           
             return entryRating;
     }
 })

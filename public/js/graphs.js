@@ -2,7 +2,8 @@
 
 $(document).ready(() => {
 
-    // This file just does a GET request to find the past week's data and updates the HTML on the page
+    //
+    // data arrays
 
     let labelArray = [];
     let dataArray = [];
@@ -16,54 +17,102 @@ $(document).ready(() => {
 
     let moodChart2;
 
+    //
+    // datasets for our graphs
+
     let datasetWithOthers = {};
     let datasetAlone = {};
+    let datasetEatenToday = {};
+    let datasetNotEaten = {};
+    let datasetTakenMeds = {};
+    let datasetNoMeds = {};
+
+    //
+    // btn constants and click events
 
     const btnWithOthers = $("#with-others");
     const btnEatenToday = $("#eaten-today");
     const btnTakenMeds = $("#taken-meds");
+    const btnAll = $("#all");
 
     $(btnWithOthers).on("click", handleWithOthers_Click);
+    $(btnEatenToday).on("click", handleEatenToday_Click);
+    $(btnTakenMeds).on("click", handleMeds_Click);
+    $(btnAll).on("click", handleAll_Click);
 
-    
+    //
+    // get our data from the database and instantiate the graphs with default info
 
     $.get("/api/user_data").then(data => {
-        console.log(data)
-
         //
-        // default graphs
+        // default graphs to display
 
         MoodByDate(data);
 
         MoodWith(data);
 
         //
-        // build
+        // build graph datasets for customize display
 
         BuildDataSet();
     });
 
+    // 
+    // button handlers for custom graph  displays
+
     function handleWithOthers_Click() {
-        //alert("here")
-        AddDataSet(datasetWithOthers)
+        AddDataSet(datasetWithOthers, datasetAlone, "Mood Ratings: With Others (pets included)");
+    }
+    function handleEatenToday_Click() {
+        AddDataSet(datasetEatenToday, datasetNotEaten, "Mood Ratings: When Eaten Today (not just coffe)");
+    }
+    function handleMeds_Click() {
+        AddDataSet(datasetTakenMeds, datasetNoMeds, "Mood Ratings: Taken Medications");
+    }
+    function handleAll_Click() {
+        AddDataSetAll("Mood Ratings: All Parameters");
     }
 
-    function AddDataSet(ds) {
-        //moodChart2.data.label.pop();
-        //moodChart2.data.datasets.forEach(dataset => {
-            //console.log(dataset);
-            //dataset.data.pop();
-            //moodChart2.data.datasets.splice(0,1);
-        //});   
-        console.log(ds);
+    // 
+    // dynamic adding datasets to our custom graph
 
-        moodChart2.data.datasets.splice(0,moodChart2.data.datasets.length);
+    function AddDataSet(ds1, ds2, title) {
 
-        moodChart2.data.datasets.push(ds);
+        moodChart2.data.datasets.splice(0, moodChart2.data.datasets.length);
+
+        moodChart2.data.datasets.push(ds1);
+        moodChart2.data.datasets.push(ds2);
+
+        moodChart2.options.title.text = title;
 
         moodChart2.update();
-        moodChart2.render();        
+        moodChart2.render();
     }
+
+    //
+    // default graph show all datasets
+
+    function AddDataSetAll(title) {
+
+        moodChart2.data.datasets.splice(0, moodChart2.data.datasets.length);
+
+        moodChart2.data.datasets.push(datasetNoMeds);
+        moodChart2.data.datasets.push(datasetTakenMeds);
+
+        moodChart2.data.datasets.push(datasetNotEaten);
+        moodChart2.data.datasets.push(datasetEatenToday);
+
+        moodChart2.data.datasets.push(datasetAlone);
+        moodChart2.data.datasets.push(datasetWithOthers);
+
+        moodChart2.options.title.text = title;
+
+        moodChart2.update();
+        moodChart2.render();
+    }
+
+    //
+    // dataset for standard graph showing mood over time
 
     function MoodByDate(data) {
         var i = 0;
@@ -83,7 +132,7 @@ $(document).ready(() => {
     }
 
     //
-    // build datasets for the graphs to dynamically add or remove
+    // default graph with all datasets - can be customize with button click
 
     function MoodWith(data) {
         var i = 0;
@@ -116,7 +165,7 @@ $(document).ready(() => {
             else {
                 dataNotTakenMeds.push(element.mood_rating);
                 dataTakenMeds.push(0);
-            }            
+            }
 
             ++i;
             if (i > 9)
@@ -128,16 +177,49 @@ $(document).ready(() => {
         PlotGroupGraph();
     }
 
+    //
+    // pre-build graph datasets for later use
+
     function BuildDataSet() {
         datasetWithOthers = {
             label: "With Others",
             backgroundColor: "#ff6f69",
             data: dataWithOthers
+        };
+
+        datasetAlone = {
+            label: "Alone",
+            backgroundColor: "#ffb7b4", 
+            data: dataNotWithOthers
+        };
+
+        datasetEatenToday = {
+            label: "Eaten Today",
+            backgroundColor: "#88d8b0",
+            data: dataEatenToday
+        };
+
+        datasetNotEaten = {
+            label: "Not Eaten Today",
+            backgroundColor: "#cfefdf", 
+            data: dataNotEatenToday
+        };
+
+        datasetTakenMeds = {
+            label: "Had Meds",
+            backgroundColor: "#ffcc5c",
+            data: dataTakenMeds
         }
 
-
-        
+        datasetNoMeds = {
+            label: "No Meds",
+            backgroundColor: "#ffe5ad",
+            data: dataNotTakenMeds
+        }
     }
+
+    //
+    // graph plotting
 
     function PlotGraph(labels, data) {
 
@@ -183,9 +265,7 @@ $(document).ready(() => {
         });
     }
 
-    function PlotGroupGraph() {
-
-        console.log(dataEatenToday);
+    function PlotGroupGraph() {       
 
         var ctx = document.getElementById('myChart2').getContext('2d');
         moodChart2 = new Chart(ctx, {
@@ -200,7 +280,7 @@ $(document).ready(() => {
                     },
                     {
                         label: "Alone",
-                        backgroundColor: "#ffb7b4", //"#ffcc5c",
+                        backgroundColor: "#ffb7b4", 
                         data: dataNotWithOthers
                     },
                     {
@@ -210,7 +290,7 @@ $(document).ready(() => {
                     },
                     {
                         label: "Not Eaten Today",
-                        backgroundColor: "#cfefdf", //"#ffcc5c",
+                        backgroundColor: "#cfefdf", 
                         data: dataNotEatenToday
                     },
                     {
@@ -220,7 +300,7 @@ $(document).ready(() => {
                     },
                     {
                         label: "No Meds",
-                        backgroundColor: "#ffe5ad", //"#ffcc5c",
+                        backgroundColor: "#ffe5ad", 
                         data: dataNotTakenMeds
                     }
                 ]
@@ -229,7 +309,7 @@ $(document).ready(() => {
                 responsive: true,
                 title: {
                     display: true,
-                    text: "Mood Ratings When With Others"
+                    text: "Mood Ratings All Parameters"
                 },
                 scales: {
                     yAxes: [{
