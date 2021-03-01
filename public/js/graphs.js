@@ -257,7 +257,8 @@ $(document).ready(() => {
                             labelString: 'Mood Rating'
                         },
                         ticks: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            suggestedMax: 10
                         }
                     }]
                 }
