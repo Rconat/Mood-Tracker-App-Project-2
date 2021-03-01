@@ -84,13 +84,13 @@ $(document).ready(() => {
         const pointMedication = $('#pointMedication')
         const pointMoodRate = $('#pointMoodRate')
 
-        pointDiary.text(data[activePoints[0]._index].user_diary)
-        pointDate.text(data[activePoints[0]._index].createdAt.slice(0, 10))
-        pointWeather.text(data[activePoints[0]._index].weather_abbrev)
-        pointEaten.text(data[activePoints[0]._index].eaten_today)
-        pointWithOthers.text(data[activePoints[0]._index].with_others)
-        pointMedication.text(data[activePoints[0]._index].medications_today)
-        pointMoodRate.text(data[activePoints[0]._index].mood_rating)
+        pointDiary.text("Diary entry: " + data[activePoints[0]._index].user_diary)
+        pointDate.text("Date of entry: " + data[activePoints[0]._index].createdAt.slice(0, 10))
+        // pointWeather.text("Weather on day of entry: " + data[activePoints[0]._index].weather_abbrev)
+        pointEaten.text("Had you eaten? : " + data[activePoints[0]._index].eaten_today)
+        pointWithOthers.text("Were you with others? : " + data[activePoints[0]._index].with_others)
+        pointMedication.text("Did you take medication? : " + data[activePoints[0]._index].medications_today)
+        pointMoodRate.text("You rated you mood : " + data[activePoints[0]._index].mood_rating)
         
         pointEntry();
       });
