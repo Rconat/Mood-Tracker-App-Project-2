@@ -65,7 +65,7 @@ form.login {
   margin-top: 15px;
 }
 
-.graphBody , .pastEntryBody{
+.graphBody , .pastEntryBody, .pointEntryBody{
   border-style: solid;
   border-width: 3px;
 
