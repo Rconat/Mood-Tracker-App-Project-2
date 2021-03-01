@@ -64,7 +64,7 @@ $(document).ready(() => {
         AddDataSet(datasetWithOthers, datasetAlone, "Mood Ratings: With Others (pets included)");
     }
     function handleEatenToday_Click() {
-        AddDataSet(datasetEatenToday, datasetNotEaten, "Mood Ratings: When Eaten Today (not just coffe)");
+        AddDataSet(datasetEatenToday, datasetNotEaten, "Mood Ratings: When Eaten Today (not just coffee)");
     }
     function handleMeds_Click() {
         AddDataSet(datasetTakenMeds, datasetNoMeds, "Mood Ratings: Taken Medications");
