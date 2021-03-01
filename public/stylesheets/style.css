@@ -79,12 +79,6 @@ form.login {
   padding-left: 10px;
 }
 
-/* .graphBody , .pastEntryBody, .pointEntryBody{
-  border-style: none;
-  border-width: 3px;
-
-} */
-
 .pastEntryButton{
     margin-bottom: 2px;  
 }
@@ -121,33 +115,22 @@ form.login {
   margin: 5px;
 }
 
-/* 
-button.submit {
-  float: right;
-  margin-bottom: 30px;
-  color: #fff;
-  background-color: #5bc0de;
-  border-color: #5bc0de;
-} */
-
-
 #diaryDiv {
   width: 2000px;
   float: left;
 }
-
-/* #graphDiv {
-  width: 1500px;
-  float: left;
-} */
 
 #accountDiv {
   width: 1500px;
   float: left;
 }
 
-.hide{
+.hide {
   display: none;
+}
+
+.graphButtons {
+  margin-bottom: 40px;
 }
 
 .btn{
