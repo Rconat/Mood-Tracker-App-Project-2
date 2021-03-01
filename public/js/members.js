@@ -97,6 +97,7 @@ $(document).ready(() => {
     };
   }
 
+  // hiding the latest entry and showing the point clicked entry
   function pointEntry() {
     $('#entryTag').hide()
     $('.pointEntry').show()
@@ -106,7 +107,7 @@ $(document).ready(() => {
   function pastTenEntries(data) {
     $.get("/api/user_data").then(data => {
       var i = 0;
-      // console.log("pastTenEntries", data)
+
         data.every(element => {
           var obj = {}
           obj['diary'] = element.user_diary
@@ -119,20 +120,20 @@ $(document).ready(() => {
           
           return true;
         });
-      // console.log("second log", tenEntriesArr)
+
       plotEntries(tenEntriesArr)
+
     });
   }
 
   function plotEntries(tenEntriesArr) {
-    console.log(tenEntriesArr)
+
     for(var i=0; i<tenEntriesArr.length; i++) {
-      console.log("loop")
-      console.log
+
       if (i>=10) {
         break
       }
-      console.log(tenEntriesArr[i])
+ 
       $(".pastEntries").append(`
       <div class="pastTenEntriesCard" style="width: 18rem;">
         <div class="card-body">
