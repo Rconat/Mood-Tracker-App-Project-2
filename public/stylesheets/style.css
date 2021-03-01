@@ -172,9 +172,11 @@ button.submit {
   height: 100px;
 }
 
-.moodyLogo {
- width: 150px;
- height: 150px;
+#moodyTitle {
+  font-family: 'Akaya Telivigala', cursive;
+ font-size: 200%;
+
+color:#ff6f69;
  
 }
 .center {
@@ -210,6 +212,7 @@ button.submit {
   font-size: xx-large;
  color: #ff6f69;
  font-weight: bold;
+ float: center;
 }
 
 .recordAMood{
@@ -226,6 +229,14 @@ button.submit {
 h4{
   color: #ff6f69;
   font-weight: bold;
+}
+.navbar-brand{
+  float:left;
+}
+#moodyHeader {
+  font-size: 50px;
+  font-family: 'Akaya Telivigala', cursive;
+  color:#ff6f69;
 }
 
 
