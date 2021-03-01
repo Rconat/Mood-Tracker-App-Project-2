@@ -2,15 +2,17 @@
 <script src="js/diary.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/weatherapi.js"></script>
 <!--end navBar Row-->
-<div class="container">
-    <h1>Record a Mood</h1>
+<div class="container backgroundColor">
+
+    <p style="text-align:center" id="moodyHeader">Moody</p> 
+    <h1 class="recordAMood">Record a Mood</h1>
     <form id="diary">
-        <div class="row">
+        <div class="row diaryBubbles">
             <div class="col-md-8 mood-question-block">
-                <div id="zip-div" class="zip-inline required">
+                 <div id="zip-div" class="zip-inline required">
                     <h4 style="width:60%" class="required-label">Zip Code: </h4>
                     <input id="zip" name="zip" placeholder="Zip" type="text" class="form-control" id="zip" required>
-                   
+
                 </div>
                 <div class="flexcon">
                     <h4>Have you eaten today?</h4>
@@ -31,47 +33,44 @@
                 <div class="flexcon">
                     <h4>Have you taken any medications?</h4>
                     <div class="radio-group">
-                        <input type="radio" class="taken-medication" name="taken-medication" value="yes" style="margin: 5px"> Yes
+                        <input type="radio" class="taken-medication" name="taken-medication" value="yes"
+                            style="margin: 5px"> Yes
                         <input type="radio" class="taken-medication" name="taken-medication" value="no"
                             style="margin-right: 5px; margin-left:20px"> No
                     </div>
                 </div>
             </div> <!-- end col 8 -->
-            <div id="icon"><img class = "hide" id="wicon" src="" alt="Weather icon"></div> 
-            </div>
+            <div id="icon"><img class="hide" id="wicon" src="" alt="Weather icon"></div>
         </div>
-        <!--end row-->
-        <div class="row flexcon">
-            <div class="col-md-12">
-                <h4>Your diary entry:</h4>
-                <textarea placeholder="How are you feeling today?" class="form-control" rows="5"
-                    id="txt-diary"></textarea>
-            </div>
-        </div>
-        <!--end text area-->
-        <div class="row flexcon">
-            <div class="col-md-8">
-                <h4>Rate your mood for today!</h4>
-                <div class="ratingDiv">
-                    <i class="far fa-star" data-id="1"> </i>
-                    <i class="far fa-star" data-id="2"></i>
-                    <i class="far fa-star" data-id="3"></i>
-                    <i class="far fa-star" data-id="4"></i>
-                    <i class="far fa-star" data-id="5"></i>
-                    <i class="far fa-star" data-id="6"></i>
-                    <i class="far fa-star" data-id="7"></i>
-                    <i class="far fa-star" data-id="8"></i>
-                    <i class="far fa-star" data-id="9"></i>
-                    <i class="far fa-star" data-id="10"></i>
-                    <br>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
-            </div>
-        </div>
-    </form>
 </div>
-
-
-
+<!--end row-->
+<div class="row flexcon backgroundColor">
+    <div class="col-md-12">
+        <h4>Your diary entry:</h4>
+        <textarea placeholder="How are you feeling today?" class="form-control" rows="5" id="txt-diary"></textarea>
+    </div>
+</div>
+<!--end text area-->
+<div class="row flexcon backgroundColor">
+    <div class="col-md-8">
+        <h4>Rate your mood for today!</h4>
+        <div class="ratingDiv iconColor">
+            <i class="far fa-star" data-id="1"> </i>
+            <i class="far fa-star" data-id="2"></i>
+            <i class="far fa-star" data-id="3"></i>
+            <i class="far fa-star" data-id="4"></i>
+            <i class="far fa-star" data-id="5"></i>
+            <i class="far fa-star" data-id="6"></i>
+            <i class="far fa-star" data-id="7"></i>
+            <i class="far fa-star" data-id="8"></i>
+            <i class="far fa-star" data-id="9"></i>
+            <i class="far fa-star" data-id="10"></i>
+            <br>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary submit" data-userId="{{user.id}}"> Submit </button>
+    </div>
+</div>
+</form>
+</div>
