@@ -7,8 +7,23 @@ $(document).ready(() => {
   $.get("/api/user_data").then(data => {
     $(".member-name").text(data.email);
 
-    const latestDiary = $('.pastEntryBody')
-    latestDiary.text(data[0].user_diary)
+
+    const latestDiary = $('#latestDiary')
+    const latestDate = $('#latestDate')
+    // const latestWeather = $('#latestWeather')
+    const latestEaten = $('#latestEaten')
+    const latestWithOthers = $('#latestWithOthers')
+    const latestMedication = $('#latestMedication')
+    const latestMoodRate = $('#latestMoodRate')
+    
+    latestDiary.text("Diary entry: " + data[0].user_diary)
+    latestDate.text("Date of entry: " + data[0].createdAt.slice(0, 10))
+    // latestWeather.text("Weather on day of entry: " + data.weather_abbrev)
+    latestEaten.text("Had you eaten? : " + data[0].eaten_today)
+    latestWithOthers.text("Were you with others? : " + data[0].with_others)
+    latestMedication.text("Did you take medication? : " + data[0].medications_today)
+    latestMoodRate.text("You rated you mood : " + data[0].mood_rating)
+
     
     MoodByDate(data);
 
@@ -99,7 +114,8 @@ $(document).ready(() => {
 
   // hiding the latest entry and showing the point clicked entry
   function pointEntry() {
-    $('#entryTag').hide()
+    $('#latestEntryTag').hide()
+    $('#pastEntryTag').show()
     $('.pointEntry').show()
     $('.pastEntry').hide()
   }
