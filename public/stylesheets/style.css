@@ -204,10 +204,11 @@ color:#ff6f69;
   border-radius: 0px;
 }
 .membersTitle{
+  text-align: center;
   font-size: xx-large;
- color: #ff6f69;
- font-weight: bold;
- float: center;
+  color: #ff6f69;
+  font-weight: bold;
+  float: center;
 }
 
 .recordAMood{
@@ -226,10 +227,16 @@ h4{
   font-weight: bold;
 }
 .navbar-brand{
+  font-size: 180%;
+  font-weight: bold;
   float:left;
 }
 #moodyHeader {
   font-size: 50px;
   font-family: 'Akaya Telivigala', cursive;
   color:#ff6f69;
+}
+
+.container-fluid {
+  justify-content: center;
 }
