@@ -134,24 +134,20 @@ button.submit {
   float: left;
 }
 
- .hide{
-   display: none;
- }
+.hide{
+  display: none;
+}
 
- .btn{
-    display:flex;
-    justify-content: space-between;
-    color: white;
-    float: right;
-    background-color: #d1253c;
-    border-color: #d1253c;
-    text-transform: none;
-    margin-right: 40px;
-<<<<<<< HEAD
-    position:relative
-=======
-    margin-bottom: 20px;;
->>>>>>> kim-graph-10
+.btn{
+  display:flex;
+  justify-content: space-between;
+  color: white;
+  float: right;
+  background-color: #d1253c;
+  border-color: #d1253c;
+  text-transform: none;
+  margin-right: 40px;
+  position:relative;
 }
 
 #wicon {
@@ -242,6 +238,3 @@ h4{
   font-family: 'Akaya Telivigala', cursive;
   color:#ff6f69;
 }
-
-
-
