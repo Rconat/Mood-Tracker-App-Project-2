@@ -55,7 +55,7 @@ $(document).ready(() => {
             }]
         },
         options: {
-          responsive: false,
+          responsive: true,
           scales: {
             yAxes: [{
               scaleLabel: {
