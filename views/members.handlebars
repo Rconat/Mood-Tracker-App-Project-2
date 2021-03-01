@@ -22,20 +22,25 @@
 
             <div class="row">
                 <div class="col-md-4">
-
+                    
+                    <!-- labels to tell user what is being displayed below -->
                     <h4 id='latestEntryTag'>Latest dairy entry</h4>
                     <h4 id='pastEntryTag' style='display: none;'> Past entry </h4> 
+                    <h4 id='pastTenEntryTag' style='display:none;'>Past ten diary entries</h4>
+
                 </div>
 
                 <div  class="col-md-8">
 
-                  <button class="btn" id = "pastTenButton">Past 10 entries</button>
-                  
+                    <!-- button for displaying past ten entries -->
+                    <button class="btn" id = "pastTenButton">Past 10 entries</button>
+                    <!-- button to navigate to the diary entry page -->
+                    <a href="/diary"> <button class="btn" id = "nextPage">Make a Diary Entry</button></a>
 
-
-                 <a href="/diary"> <button class="btn" id = "nextPage">Make a Diary Entry</button></a>
                 </div>              
             </div>
+
+            <!-- div for latest entry -->
             <div class="pastEntry" style='margin-top: 35px;'>
                 <div class="pastEntryBody">
                     <h3 id="latestDate"></h3>
@@ -47,7 +52,8 @@
                     <p id="latestMoodRate"></p>
                 </div>
             </div> <!-- end div for past entry-->
-            
+
+            <!-- div for entry on point click -->
             <div class="pointEntry" style='margin-top: 35px; display: none;'>
                 <div class="pointEntryBody">
                     <h3 id="pointDate"></h3>
@@ -60,8 +66,11 @@
                 </div>
             </div> <!-- end div for point entry-->
 
+            <!-- div for past ten entries -->
+            <div class="pastEntries" style='margin-top: 35px; display: none;'>
 
-            <div class="pastEntries" style='margin-top: 35px;'>
+                <!-- past ten entries will be appended here -->
+
             </div> <!-- end div for past ten entries-->
 
 

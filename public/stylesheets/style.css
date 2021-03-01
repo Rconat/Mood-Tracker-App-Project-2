@@ -72,11 +72,12 @@ form.login {
   padding-bottom: 10px;
 }
 
-.pastEntryBody, .pointEntryBody {
+.pastEntryBody, .pointEntryBody, .pastTenEntryBody {
   border-color: slategray;
   border-style: solid;
   border-width: 1px;
   padding-left: 10px;
+  margin-bottom: 20px;
 }
 
 .pastEntryButton{
@@ -167,13 +168,21 @@ form.login {
   height: 100px;
 }
 
+#moodyMainTitle {
+  font-family: 'Akaya Telivigala', cursive;
+  font-size: 200%;
+  color:#ff6f69;
+  text-align: center;  
+}
+
 #moodyTitle {
   font-family: 'Akaya Telivigala', cursive;
- font-size: 200%;
-
-color:#ff6f69;
- 
+  font-size: 140%;
+  color:#ff6f69;
+  text-align: center;
+  padding-bottom: 20px;
 }
+
 .center {
   display: block;
   margin-left:auto;

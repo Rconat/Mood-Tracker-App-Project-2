@@ -5,8 +5,7 @@ $(document).ready(() => {
   // and updates the HTML on the page
   var tenEntriesArr = []
   $.get("/api/user_data").then(data => {
-    $(".member-name").text(data.email);
-
+    // $(".member-name").text(data.email);
 
     const latestDiary = $('#latestDiary')
     const latestDate = $('#latestDate')
@@ -22,7 +21,7 @@ $(document).ready(() => {
     latestEaten.text("Had you eaten? : " + data[0].eaten_today)
     latestWithOthers.text("Were you with others? : " + data[0].with_others)
     latestMedication.text("Did you take medication? : " + data[0].medications_today)
-    latestMoodRate.text("You rated you mood : " + data[0].mood_rating)
+    latestMoodRate.text("You rated you mood : " + data[0].mood_rating + " out of 10")
 
     
     MoodByDate(data);
@@ -105,7 +104,7 @@ $(document).ready(() => {
         pointEaten.text("Had you eaten? : " + data[activePoints[0]._index].eaten_today)
         pointWithOthers.text("Were you with others? : " + data[activePoints[0]._index].with_others)
         pointMedication.text("Did you take medication? : " + data[activePoints[0]._index].medications_today)
-        pointMoodRate.text("You rated you mood : " + data[activePoints[0]._index].mood_rating)
+        pointMoodRate.text("You rated you mood : " + data[activePoints[0]._index].mood_rating + " out of 10")
         
         pointEntry();
       });
@@ -116,8 +115,10 @@ $(document).ready(() => {
   function pointEntry() {
     $('#latestEntryTag').hide()
     $('#pastEntryTag').show()
+    $('#pastTenEntryTag').hide()
     $('.pointEntry').show()
     $('.pastEntry').hide()
+    $('.pastEntries').hide()
   }
 
   function pastTenEntries(data) {
@@ -128,6 +129,12 @@ $(document).ready(() => {
           var obj = {}
           obj['diary'] = element.user_diary
           obj['dateCr'] = element.createdAt.slice(0, 10)
+          // obj['weather'] = element.weather_abbrev
+          obj['eaten'] = element.eaten_today
+          obj['withOthers'] = element.with_others
+          obj['medication'] = element.medications_today
+          obj['mood'] = element.mood_rating
+
           tenEntriesArr.push(obj)
           
           ++i;
@@ -151,14 +158,24 @@ $(document).ready(() => {
       }
  
       $(".pastEntries").append(`
-      <div class="pastTenEntriesCard" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">${tenEntriesArr[i].dateCr}</h5>
-            <p class="card-text">${tenEntriesArr[i].diary}</p>
+        <div class="pastTenEntryBody">
+          <h3 id="pastTenDate">Date of entry: ${tenEntriesArr[i].dateCr}</h3>
+          <p id="pastTenDiary">Diary entry: ${tenEntriesArr[i].diary}</p>
+          <p id="pastTenWeather">Weather on day of entry: ${tenEntriesArr[i].weather}</p>
+          <p id="pastTenEaten">Had you eaten? : ${tenEntriesArr[i].eaten}</p>
+          <p id="pastTenWithOthers">Were you with others? : ${tenEntriesArr[i].withOthers}</p>
+          <p id="pastTenMedication">Did you take medication? : ${tenEntriesArr[i].medication}</p>
+          <p id="pastTenMoodRate">You rated you mood : ${tenEntriesArr[i].mood} out of 10</p>
         </div>
-      </div>
       `)
     }
+
+    $('#pastTenEntryTag').show()
+    $('#latestEntryTag').hide()
+    $('#pastEntryTag').hide()
+    $('.pointEntry').hide()
+    $('.pastEntry').hide()
+    $('.pastEntries').show()
   }
 
   $("#pastTenButton").on("click", pastTenEntries) 
