@@ -60,7 +60,7 @@ $(document).ready(() => {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Mood Rating for the Latest 10 Entries',
+                label: 'Mood Rating for the Latest ' + data.length + ' Entries',
                 fill: false,
                 data: data,
                 backgroundColor: "#88d8b0",
