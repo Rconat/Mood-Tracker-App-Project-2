@@ -229,7 +229,7 @@ $(document).ready(() => {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Last 15 Entries Mood Rating',
+                    label: 'Mood Rating for the Latest 10 Entries',
                     fill: false,
                     data: data,
                     backgroundColor: "#88d8b0",
@@ -246,7 +246,7 @@ $(document).ready(() => {
                 tooltips: {
                     callbacks: {
                         label: function (tooltipItem) {
-                            return "Star rating *" + Number(tooltipItem.yLabel) + " out 10";
+                            return "Star rating : " + Number(tooltipItem.yLabel) + " out of 10";
                         }
                     }
                 },
@@ -261,7 +261,8 @@ $(document).ready(() => {
                             suggestedMax: 10
                         }
                     }]
-                }
+                },
+                changeScale: true
             }
         });
     }
@@ -315,7 +316,8 @@ $(document).ready(() => {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            suggestedMax: 10
                         },
                         scaleLabel: {
                             display: true,

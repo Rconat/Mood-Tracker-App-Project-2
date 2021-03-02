@@ -1,64 +1,55 @@
-form.signup,
-form.login {
+form.signup, form.login {
   margin-top: 50px;
 }
-/* .container{
-  width:100%;
-} */
+
 .form-check{
   float: right;
 }
 
-.flexconDiary { display:flex;
-     
+.flexconDiary { display:flex; 
   font-size: 25px;
   float: left;  
   width:100%;
- }
+}
 
- .checkBoxContainer{
-    margin-top: 20px;
- }
+.checkBoxContainer{
+  margin-top: 20px;
+}
 
- .weatherBox{
-    display: flex;
-    justify-content: flex-end;
-    border-style: solid;
-    border-width: 2px;
-    height: 45px;
-    width: 45px;
-   float: right;
- }
+.weatherBox{
+  display: flex;
+  justify-content: flex-end;
+  border-style: solid;
+  border-width: 2px;
+  height: 45px;
+  width: 45px;
+  float: right;
+}
 
- .ratingDiv{
-    border-style: solid;
-    /* border-width: 1px; */
-    height: 50px;
-    width: 40%;
-    padding-left: 10px;
-    padding-top: 4px;
- }
+.ratingDiv{
+  border-style: solid;
+  height: 50px;
+  width: 40%;
+  padding-left: 10px;
+  padding-top: 4px;
+}
 
 
- .submitButton{
-     margin-top: 20px;
- }
+.submitButton{
+  margin-top: 20px;
+}
 
- .finalPageGraph{
-
+.finalPageGraph{
   border-style: none;
   border-width: 1px;
   margin-top: 20px;
-  height: 360px;
 }
 
 .modelDivBody{
-
   border-style: solid;
   border-width: 3px;
   margin-top: 20px;
   height: 200px;
-
 }
 
 .flexconGraph{
@@ -107,7 +98,6 @@ form.login {
   font-size: medium;
 }
 
-
 .radio-1 {
   margin: 5px;
 }
@@ -151,6 +141,7 @@ form.login {
   min-width: 80px;
   background-color: gainsboro;
 }
+
 #logoutId {
   float: right;
 }
@@ -212,12 +203,14 @@ form.login {
   width: 100%;
   border-radius: 0px;
 }
+
 .membersTitle{
   text-align: center;
   font-size: xx-large;
   color: #ff6f69;
   font-weight: bold;
   float: center;
+  margin-bottom: 50px;
 }
 
 .recordAMood{
@@ -231,15 +224,18 @@ form.login {
   color: #ff6f69;
   font-weight: bold;
 }
+
 h4{
   color: #ff6f69;
   font-weight: bold;
 }
+
 .navbar-brand{
   font-size: 180%;
   font-weight: bold;
   float:left;
 }
+
 #moodyHeader {
   font-size: 50px;
   font-family: 'Akaya Telivigala', cursive;

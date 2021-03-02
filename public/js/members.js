@@ -60,7 +60,7 @@ $(document).ready(() => {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Mood Ratings for Latest 10 Entries',
+                label: 'Mood Rating for the Latest 10 Entries',
                 fill: false,
                 data: data,
                 backgroundColor: "#88d8b0",
@@ -70,6 +70,17 @@ $(document).ready(() => {
         },
         options: {
           responsive: true,
+          title: {
+            display: true,
+            text: "Mood Ratings"
+          },
+          tooltips: {
+            callbacks: {
+                label: function (tooltipItem) {
+                    return "Star rating : " + Number(tooltipItem.yLabel) + " out of 10";
+                }
+            }
+        },
           scales: {
             yAxes: [{
               scaleLabel: {
