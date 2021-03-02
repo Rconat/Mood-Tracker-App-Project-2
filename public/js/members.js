@@ -43,7 +43,7 @@ $(document).ready(() => {
         labelArray.push(element.createdAt.slice(0, 10));
 
         ++i;
-        if (i > 10)
+        if (i >= 10)
             return false;
 
         return true;
