@@ -4,12 +4,15 @@ $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   var tenEntriesArr = []
+
+  $.get("/api/user").then(data => {
+    $(".member-name").text(data.email);
+  });
+
   $.get("/api/user_data").then(data => {
-    // $(".member-name").text(data.email);
 
     const latestDiary = $('#latestDiary')
     const latestDate = $('#latestDate')
-    // const latestWeather = $('#latestWeather')
     const latestEaten = $('#latestEaten')
     const latestWithOthers = $('#latestWithOthers')
     const latestMedication = $('#latestMedication')
@@ -17,21 +20,31 @@ $(document).ready(() => {
     
     latestDiary.text("Diary entry: " + data[0].user_diary)
     latestDate.text("Date of entry: " + data[0].createdAt.slice(0, 10))
-    // latestWeather.text("Weather on day of entry: " + data[0].weather_abbrev)
-    latestEaten.text("Had you eaten? : " + data[0].eaten_today)
-    latestWithOthers.text("Were you with others? : " + data[0].with_others)
-    latestMedication.text("Did you take medication? : " + data[0].medications_today)
     latestMoodRate.text("You rated you mood : " + data[0].mood_rating + " out of 10")
 
+    if (data[0].eaten_today === true) {
+      latestEaten.text("Had you eaten? : Yes")
+    } else {
+      latestEaten.text("Had you eaten? : No")
+    }
+
+    if (data[0].with_others === true) {
+      latestWithOthers.text("Were you with others? : Yes")
+    } else {
+      latestWithOthers.text("Were you with others? : No")
+    }
+
+    if (data[0].medications_today === true) {
+      latestMedication.text("Did you take medication? : Yes")
+    } else {
+      latestMedication.text("Did you take medication? : No")
+    }
     
     MoodByDate(data);
 
   });
 
-  $.get("/api/user").then(data => {
-    $(".member-name").text(data.email);
-  });
-
+  // function to grab the latest 10 entries and pushing those values into arrays to be used by the graph
   let labelArray = [];
   let dataArray = [];
 
@@ -52,6 +65,7 @@ $(document).ready(() => {
     PlotGraph(labelArray, dataArray);
   }
 
+  // function to plot the graph taking in the latest 10 entries
   function PlotGraph(labels, data) {
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -103,7 +117,6 @@ $(document).ready(() => {
       $.get("/api/user_data").then(data => {
         const pointDiary = $('#pointDiary')
         const pointDate = $('#pointDate')
-        // const pointWeather = $('#pointWeather')
         const pointEaten = $('#pointEaten')
         const pointWithOthers = $('#pointWithOthers')
         const pointMedication = $('#pointMedication')
@@ -111,11 +124,25 @@ $(document).ready(() => {
 
         pointDiary.text("Diary entry: " + data[activePoints[0]._index].user_diary)
         pointDate.text("Date of entry: " + data[activePoints[0]._index].createdAt.slice(0, 10))
-        // pointWeather.text("Weather on day of entry: " + data[activePoints[0]._index].weather_abbrev)
-        pointEaten.text("Had you eaten? : " + data[activePoints[0]._index].eaten_today)
-        pointWithOthers.text("Were you with others? : " + data[activePoints[0]._index].with_others)
-        pointMedication.text("Did you take medication? : " + data[activePoints[0]._index].medications_today)
         pointMoodRate.text("You rated you mood : " + data[activePoints[0]._index].mood_rating + " out of 10")
+        
+        if (data[activePoints[0]._index].eaten_today === true) {
+          pointEaten.text("Had you eaten? : Yes")
+        } else {
+          pointEaten.text("Had you eaten? : No")
+        }
+
+        if (data[activePoints[0]._index].with_others === true) {
+          pointWithOthers.text("Were you with others? : Yes")
+        } else {
+          pointWithOthers.text("Were you with others? : No")
+        }
+
+        if (data[activePoints[0]._index].medications_today === true) {
+          pointMedication.text("Did you take medication? : Yes")
+        } else {
+          pointMedication.text("Did you take medication? : No")
+        }
         
         pointEntry();
       });
@@ -132,6 +159,7 @@ $(document).ready(() => {
     $('.pastEntries').hide()
   }
 
+  // function to pull the data from the last 10 entries
   function pastTenEntries(data) {
     $.get("/api/user_data").then(data => {
       var i = 0;
@@ -140,7 +168,6 @@ $(document).ready(() => {
           var obj = {}
           obj['diary'] = element.user_diary
           obj['dateCr'] = element.createdAt.slice(0, 10)
-          // obj['weather'] = element.weather_abbrev
           obj['eaten'] = element.eaten_today
           obj['withOthers'] = element.with_others
           obj['medication'] = element.medications_today
@@ -160,6 +187,7 @@ $(document).ready(() => {
     });
   }
 
+  // function taking in the past 10 diary entries and appending them to the dom
   function plotEntries(tenEntriesArr) {
 
     for(var i=0; i<tenEntriesArr.length; i++) {
@@ -172,7 +200,6 @@ $(document).ready(() => {
         <div class="pastTenEntryBody">
           <h3 id="pastTenDate">Date of entry: ${tenEntriesArr[i].dateCr}</h3>
           <p id="pastTenDiary">Diary entry: ${tenEntriesArr[i].diary}</p>
-          <p id="pastTenWeather">Weather on day of entry: ${tenEntriesArr[i].weather}</p>
           <p id="pastTenEaten">Had you eaten? : ${tenEntriesArr[i].eaten}</p>
           <p id="pastTenWithOthers">Were you with others? : ${tenEntriesArr[i].withOthers}</p>
           <p id="pastTenMedication">Did you take medication? : ${tenEntriesArr[i].medication}</p>
