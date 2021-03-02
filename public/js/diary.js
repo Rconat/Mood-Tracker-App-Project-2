@@ -1,159 +1,171 @@
-$(document).ready(function () {
+/* eslint-disable camelcase */
+$(document).ready(() => {
+  // Getting jQuery references to the form and fields
+  const diaryForm = $("#diary");
+  const txtZip = $("#zip");
+  let zip;
 
-    // Getting jQuery references to the form and fields
-    //
-    
-    const diaryForm = $("#diary");
+  const radEatenToday = $(".eaten-today");
+  let eaten_today;
 
-    const txtZip = $("#zip");
-    let zip;
+  const radWithPeople = $(".with-people");
+  let with_others;
 
-    const radEatenToday = $(".eaten-today");
-    let eaten_today;
+  const radTakenMedication = $(".taken-medication");
+  let medications_today;
 
-    const radWithPeople = $(".with-people");
-    let with_others;
+  const txtDiary = $("#txt-diary");
+  let user_diary;
 
-    const radTakenMedication = $(".taken-medication");
-    let medications_today;
+  const btnSubmit = $(".submit");
+  const UserId = parseInt(btnSubmit.attr("data-userId"));
 
-    const txtDiary = $("#txt-diary");
-    let user_diary;
+  $(diaryForm).on("submit", handleFormSubmit);
 
-    const btnSubmit = $(".submit");
-    let UserId = parseInt( btnSubmit.attr("data-userId"))
+  function handleFormSubmit(event) {
+    event.preventDefault();
 
-    $(diaryForm).on("submit", handleFormSubmit);
+    // zip will be a required field for submitting
+    zip = parseInt(txtZip.val());
 
-    function handleFormSubmit(event) {
-        event.preventDefault();
+    // read all the radio button choices
 
-
-        // zip will be a required field for submitting
-        //
-
-        zip = parseInt( txtZip.val());
-
-        //
-        // read all the radio button choices
-
-        for (const rb of radEatenToday) {
-            if (rb.checked) {
-                eaten_today = rb.value;            
-                break;
-            }
-        }
-        for (const rb of radWithPeople) {
-            if (rb.checked) {
-                with_others = rb.value;               
-                break;
-            }
-        }
-        for (const rb of radTakenMedication) {
-            if (rb.checked) {
-                medications_today = rb.value;                
-                break;
-            }
-        }
-        user_diary = txtDiary.val();
-
-        let mood_rating = GetStarRating();
-
-        //
-        // mood object
-
-        var newMood = {
-            UserId: UserId,
-            zip,
-            with_others: with_others === "yes",
-            eaten_today: eaten_today === "yes",
-            medications_today: medications_today === "yes",
-            user_diary: user_diary,
-            mood_rating: mood_rating
-        }
-        
-        //
-        // post this mood record
-
-        $.post("/api/mood", newMood)
-            .then((res) => {                
-               
-                window.location.replace("/members");                
-            })
-            .catch(err => {
-                console.log(err);
-            });
+    for (const rb of radEatenToday) {
+      if (rb.checked) {
+        eaten_today = rb.value;
+        break;
+      }
     }
 
-    //
-    // star rating hover 
+    for (const rb of radWithPeople) {
+      if (rb.checked) {
+        with_others = rb.value;
+        break;
+      }
+    }
 
-    const star = $("i")
-    star.hover(function () {
-        var targetStar = (parseInt($(this).data("id")))
-        if (!$(this).hasClass("ratingLocked")) {
-            for (let i = 0; i <= targetStar; i++) {
-                $("i[data-id=" + i + "]").removeClass("far").addClass("fas")
-                $(this).removeClass("far").addClass("fas")
-            }
-            for (let i = 10; i > targetStar; i--) {
-                $("i[data-id=" + (i + 1) + "]").removeClass("fas").addClass("far")
-                $(this).removeClass("far").addClass("fas")
-            }
-        } else if ((!$(this).hasClass("ratingLocked")) && (star.hasClass("ratingLocked"))) {
-            for (let i = 0; i <= star.length; i++) {
-                if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
-                    return
-                } else {
-                    $(this).removeClass("fas").addClass("far")
-                }
-            }
-        }
-    }, function () {
-        if (star.hasClass("ratingLocked") && (!$(this).hasClass("ratingLocked"))) {
-            for (let i = 0; i <= star.length; i++) {
-                if (!$(this).hasClass("ratingLocked")) {
-                    if ($("i[data-id=" + i + "]").hasClass("ratingLocked")) {
-                        $("i[data-id=" + i + "]").removeClass("far").addClass("fas")
-                    } else if (!$("i[data-id=" + i + "]").hasClass("ratingLocked")) {
-                        $("i[data-id=" + i + "]").removeClass("fas").addClass("far")
-                    }
-                }
-            }
-        } else if (star.hasClass("ratingLocked")) {
-            return
-        } else if (!$(this).hasClass("ratingLocked")) {
-            star.removeClass("fas").addClass("far")
-        }
-    })
-    star.click(function () {
-        btnSubmit.prop("disabled", false)
-        var targetStar = (parseInt($(this).data("id")))
+    for (const rb of radTakenMedication) {
+      if (rb.checked) {
+        medications_today = rb.value;
+        break;
+      }
+    }
+    user_diary = txtDiary.val();
+
+    const mood_rating = GetStarRating();
+
+    // mood object
+    const newMood = {
+      UserId: UserId,
+      zip,
+      with_others: with_others === "yes",
+      eaten_today: eaten_today === "yes",
+      medications_today: medications_today === "yes",
+      user_diary: user_diary,
+      mood_rating: mood_rating
+    };
+
+    // post this mood record
+    $.post("/api/mood", newMood)
+      .then(() => {
+        window.location.replace("/members");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  // star rating hover function - changes the stars below to reflect rating IF clicked
+  const star = $("i");
+  star.hover(
+    function() {
+      const targetStar = parseInt($(this).data("id"));
+      if (!$(this).hasClass("ratingLocked")) {
         for (let i = 0; i <= targetStar; i++) {
-            $("i[data-id=" + i + "]").addClass("ratingLocked")
-            $(this).addClass("ratingLocked")
+          $("i[data-id=" + i + "]")
+            .removeClass("far")
+            .addClass("fas");
+          $(this)
+            .removeClass("far")
+            .addClass("fas");
         }
+
         for (let i = 10; i > targetStar; i--) {
-            $("i[data-id=" + i + "]").removeClass("ratingLocked")
-            if ($(this).hasClass("fas")) {
-                $("i[data-id=" + i + "]").removeClass("fas").addClass("far")
-            }
+          $("i[data-id=" + (i + 1) + "]")
+            .removeClass("fas")
+            .addClass("far");
+          $(this)
+            .removeClass("far")
+            .addClass("fas");
         }
-    })
+      } else if (
+        !$(this).hasClass("ratingLocked") &&
+        star.hasClass("ratingLocked")
+      ) {
+        for (let i = 0; i <= star.length; i++) {
+          if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
+            return;
+            // eslint-disable-next-line no-else-return
+          } else {
+            $(this)
+              .removeClass("fas")
+              .addClass("far");
+          }
+        }
+      }
+    },
 
-    //
-    // read the number of stars selected
-
-    function GetStarRating() {
-        var entryRating
-        var ratingArray = []
-            for (let i = 0; i <= star.length; i++) {
-                if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
-                    ratingArray.push(star[i])
-                }
+    function() {
+      if (star.hasClass("ratingLocked") && !$(this).hasClass("ratingLocked")) {
+        for (let i = 0; i <= star.length; i++) {
+          if (!$(this).hasClass("ratingLocked")) {
+            if ($("i[data-id=" + i + "]").hasClass("ratingLocked")) {
+              $("i[data-id=" + i + "]")
+                .removeClass("far")
+                .addClass("fas");
+            } else if (!$("i[data-id=" + i + "]").hasClass("ratingLocked")) {
+              $("i[data-id=" + i + "]")
+                .removeClass("fas")
+                .addClass("far");
             }
-            entryRating = ratingArray[ratingArray.length - 1].getAttribute('data-id')
-           
-            return entryRating;
+          }
+        }
+      } else if (star.hasClass("ratingLocked")) {
+        return;
+      } else if (!$(this).hasClass("ratingLocked")) {
+        star.removeClass("fas").addClass("far");
+      }
     }
-})
+  );
+
+  star.click(function() {
+    btnSubmit.prop("disabled", false);
+    const targetStar = parseInt($(this).data("id"));
+    for (let i = 0; i <= targetStar; i++) {
+      $("i[data-id=" + i + "]").addClass("ratingLocked");
+      $(this).addClass("ratingLocked");
+    }
+    for (let i = 10; i > targetStar; i--) {
+      $("i[data-id=" + i + "]").removeClass("ratingLocked");
+      if ($(this).hasClass("fas")) {
+        $("i[data-id=" + i + "]")
+          .removeClass("fas")
+          .addClass("far");
+      }
+    }
+  });
+
+  // read the number of stars selected
+  function GetStarRating() {
+    const ratingArray = [];
+    for (let i = 0; i <= star.length; i++) {
+      if ($("i[data-id=" + (i + 1) + "]").hasClass("ratingLocked")) {
+        ratingArray.push(star[i]);
+      }
+    }
+    const entryRating = ratingArray[ratingArray.length - 1].getAttribute(
+      "data-id"
+    );
+    return entryRating;
+  }
+});
