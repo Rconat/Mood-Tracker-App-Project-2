@@ -157,14 +157,3 @@ $(document).ready(function () {
             return entryRating;
     }
 })
-
-
-
-
-
-
-
-
-
-
-

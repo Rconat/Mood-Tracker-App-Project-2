@@ -2,6 +2,7 @@
 
 const star = $("i")
 const submit = $("#submit")
+
 star.hover(function() {
     var targetStar = (parseInt($(this).data("id")))
     if (!$(this).hasClass("ratingLocked")) {
@@ -39,6 +40,7 @@ star.hover(function() {
         star.removeClass("fas").addClass("far")
     }
 })
+
 star.click(function() {
     submit.prop("disabled", false)
     var targetStar = (parseInt($(this).data("id")))
@@ -63,23 +65,4 @@ submit.click(function() {
     }
     entryRating = ratingArray[ratingArray.length-1].getAttribute('data-id')
     console.log(entryRating + " will be saved as the diary entry rating")
-<<<<<<< HEAD
 })
-=======
-})
-
-
-
-
-// Josh's working code
-
-// const stars = $('i')
-//   stars.hover(function() {
-//     var targetStar = (parseInt($(this).data("id"))) - 1
-//     stars.each(function(i) {
-//       i <= targetStar
-//         ? $(this).removeClass('far').addClass('fas')
-//         : $(this).removeClass('fas').addClass('far')
-//     })
-//   })
->>>>>>> RyanBEscript
