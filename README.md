@@ -1,4 +1,4 @@
-# Sequelize - Reverse Engineering Code
+# Project 2 - Diary Tracking Database - Moody!
 
 ## Description 
 
