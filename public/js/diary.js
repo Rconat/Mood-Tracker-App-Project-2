@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 $(document).ready(() => {
   // Getting jQuery references to the form and fields
   const diaryForm = $("#diary");
@@ -25,7 +26,7 @@ $(document).ready(() => {
     event.preventDefault();
 
     // zip will be a required field for submitting
-    zip = parseInt( txtZip.val());
+    zip = parseInt(txtZip.val());
 
     // read all the radio button choices
 
